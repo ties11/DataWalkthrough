@@ -173,10 +173,10 @@ export const hypothesisTesting: Subject = {
       id: "ht-q1",
       question: "What does a p-value of 0.03 actually mean?",
       options: [
-        "There is a 3% chance the null hypothesis is true",
+        "There is a 3% probability that the null hypothesis is true given the data observed",
         "If the null hypothesis were true, there is a 3% chance of seeing data at least this extreme",
-        "The effect is 3% in size",
-        "There is a 97% chance the result is important",
+        "The study has a 97% probability of replicating if repeated with the same sample size",
+        "The measured effect has a magnitude of 3% of the baseline value"
       ],
       correctIndex: 1,
       explanation:
@@ -186,12 +186,12 @@ export const hypothesisTesting: Subject = {
       id: "ht-q2",
       question: "What is a Type I error?",
       options: [
-        "Missing a real effect (false negative)",
-        "Declaring an effect that is not actually there (false positive)",
-        "Using the wrong test",
-        "Collecting too much data",
+        "Choosing the wrong statistical test for the data distribution",
+        "Failing to detect a real effect because the sample size was too small (false negative)",
+        "Using a significance threshold that is too strict, causing the study to be underpowered",
+        "Declaring an effect that is not actually there (false positive)"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "A Type I error is a false positive — rejecting the null when it is actually true. The significance level α (e.g. 0.05) is exactly the Type I error rate you accept. A Type II error is the false negative.",
     },
@@ -199,10 +199,10 @@ export const hypothesisTesting: Subject = {
       id: "ht-q3",
       question: "Why is a 95% confidence interval often more useful than a bare p-value?",
       options: [
-        "It is always narrower",
+        "It provides a direct probability that the true parameter value lies within the stated range",
         "It conveys both the estimated effect and the uncertainty around it as a range",
-        "It removes the need for a sample",
-        "It proves causation",
+        "It removes sampling variation entirely because it covers 95% of all possible outcomes",
+        "It is equivalent to the p-value but expressed on a scale that is easier to communicate to non-statisticians"
       ],
       correctIndex: 1,
       explanation:
@@ -213,12 +213,12 @@ export const hypothesisTesting: Subject = {
       question:
         "You test 20 independent hypotheses at α = 0.05 with no real effects. Roughly how many will appear 'significant'?",
       options: [
-        "Zero, because nothing is real",
-        "About one, purely by chance — the multiple comparisons problem",
-        "All twenty",
-        "Exactly ten",
+        "Approximately ten — half of all tests will cross the 50th percentile of the null distribution",
+        "All twenty — α = 0.05 means only 5% of tests are trustworthy, so 95% are false positives",
+        "Zero — a well-designed study with no real effects will produce no false positives",
+        "About one, purely by chance — the multiple comparisons problem"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "At α = 0.05, each test has a 5% false-positive chance. Across 20 tests, about one will hit significance by luck alone. This is why p-hacking manufactures false discoveries and why corrections exist.",
     },
@@ -226,10 +226,10 @@ export const hypothesisTesting: Subject = {
       id: "ht-q5",
       question: "A result is highly statistically significant (p < 0.001). What can you conclude?",
       options: [
-        "The effect is large and important",
+        "The finding will definitely replicate in an independent study with the same design",
         "The data is very unlikely under the null, but the effect could still be tiny and unimportant",
-        "The null hypothesis is definitely false",
-        "The result will replicate for certain",
+        "The effect is practically important and large enough to be worth acting on",
+        "The null hypothesis has been proven false beyond a reasonable doubt"
       ],
       correctIndex: 1,
       explanation:

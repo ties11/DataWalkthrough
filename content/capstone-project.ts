@@ -153,12 +153,12 @@ export const capstoneProject: Subject = {
       id: "cap-q1",
       question: "Why must you fit preprocessing transformers (e.g. StandardScaler) on the training set only?",
       options: [
-        "Fitting on all data is faster and gives the same result",
-        "Fitting on test data exposes test statistics to the model, causing data leakage and over-optimistic evaluation",
-        "sklearn only supports fitting on training data",
-        "Scalers are less accurate when fit on larger datasets",
+        "Fitting on all data uses the test set's mean and variance, causing data leakage and over-optimistic evaluation",
+        "Fitting on the full dataset causes the scaler to lose numerical precision on large inputs",
+        "sklearn's Pipeline object cannot apply a scaler that was fit on more than one split",
+        "Scaling test data with training statistics produces features outside the [0, 1] range",
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Fitting a scaler on all data lets the model 'see' test set statistics during training — a form of data leakage. Always fit transformers on train only, then apply to val/test.",
     },
@@ -166,12 +166,12 @@ export const capstoneProject: Subject = {
       id: "cap-q2",
       question: "In the bias–variance tradeoff, what happens when a model is too complex relative to the dataset size?",
       options: [
-        "High bias, low variance — the model underfits",
-        "Low bias, high variance — the model overfits",
-        "Both bias and variance are high",
-        "The model achieves the irreducible error floor",
+        "High bias, low variance — the model underfits by making overly simplistic assumptions",
+        "Bias and variance both decrease as complexity rises above the dataset size",
+        "High bias and high variance — the model is simultaneously too rigid and unstable",
+        "Low bias, high variance — the model overfits"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "An overly complex model memorises training noise (low bias on train) but fails to generalise (high variance, poor test performance). Regularisation, dropout, or reducing model capacity helps.",
     },
@@ -179,12 +179,12 @@ export const capstoneProject: Subject = {
       id: "cap-q3",
       question: "Which metric is most appropriate for a highly imbalanced binary classification problem (1% positive class)?",
       options: [
-        "Accuracy — it summarises overall correctness",
         "AUC-ROC — it measures discrimination regardless of threshold",
-        "R² — it measures explained variance",
-        "RMSE — it penalises large prediction errors",
+        "Accuracy — it summarises overall correctness across all 100% of samples",
+        "F1 score — it is always the best metric for binary classification regardless of balance",
+        "Log-loss — it penalises confident wrong predictions most severely"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "With 99% negatives, a model that always predicts 'negative' achieves 99% accuracy — meaningless. AUC-ROC measures the model's ability to rank positives above negatives across all thresholds.",
     },
@@ -192,12 +192,12 @@ export const capstoneProject: Subject = {
       id: "cap-q4",
       question: "In a Transformer's self-attention, what is the role of the Query, Key, and Value vectors?",
       options: [
-        "Q selects features, K computes gradients, V stores the final output",
+        "Q, K, and V are independently trained lookup tables that store different aspects of vocabulary",
+        "Q encodes the token's position, K encodes its semantic meaning, V encodes its syntactic role",
         "Q is compared to K to compute attention weights; V is then aggregated using those weights",
-        "Q, K, and V are three separate neural networks that vote on the output",
-        "Q encodes position, K encodes meaning, V encodes syntax",
+        "Q selects which layer to activate, K scales the gradient, V propagates the residual connection"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "Attention weights = softmax(QKᵀ / √d_k). Each query finds which keys to attend to, and the result is a weighted sum of the values.",
     },
@@ -205,12 +205,12 @@ export const capstoneProject: Subject = {
       id: "cap-q5",
       question: "What does NDCG@K measure that Precision@K does not?",
       options: [
-        "NDCG penalises recommendations below rank K",
-        "NDCG accounts for the position of relevant items — items ranked higher contribute more",
-        "NDCG uses binary relevance while Precision@K uses graded relevance",
-        "NDCG measures catalogue coverage across all users",
+        "NDCG uses graded relevance scores while Precision@K can only handle binary relevance",
+        "NDCG evaluates catalogue diversity, penalising when the top K items share the same genre",
+        "NDCG measures the fraction of relevant items retrieved in the top K, weighted by their popularity",
+        "NDCG accounts for the position of relevant items — items ranked higher contribute more"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "NDCG discounts the gain of each relevant item by 1/log₂(rank+1). A relevant item at rank 1 is worth much more than at rank 10. Precision@K treats all positions equally.",
     },

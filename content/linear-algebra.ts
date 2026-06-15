@@ -184,12 +184,12 @@ export const linearAlgebra: Subject = {
       id: "la-q1",
       question: "What does the dot product of two vectors measure?",
       options: [
-        "The number of elements they share",
         "How much the two vectors point in the same direction (related to the angle between them)",
-        "The longer of the two vectors",
-        "Whether the vectors are equal",
+        "The determinant of the matrix formed by stacking the two vectors as rows",
+        "The element-wise maximum value across both vectors at each position",
+        "The Euclidean distance between the tips of the two vectors when placed at the origin"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "The dot product equals |a||b|cosθ, so it measures alignment. Zero means perpendicular; large positive means same direction. This is the basis of cosine similarity used in search and recommendation.",
     },
@@ -197,12 +197,12 @@ export const linearAlgebra: Subject = {
       id: "la-q2",
       question: "Why is matrix multiplication central to machine learning performance?",
       options: [
-        "It is the only operation computers can do",
         "Expressing models as matrix operations lets hardware (GPUs) run them massively in parallel",
-        "It avoids using any memory",
-        "It removes the need for data",
+        "It guarantees that the model's loss function is convex, simplifying the optimisation",
+        "Matrix multiplication allows models to run without storing the entire dataset in RAM",
+        "Matrix multiplication is numerically exact while element-wise loops accumulate floating-point errors"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Vectorising computation as matrix multiplication lets GPUs execute it in parallel, making models thousands of times faster than equivalent loop-based code. This is why deep learning runs on GPUs.",
     },
@@ -210,12 +210,12 @@ export const linearAlgebra: Subject = {
       id: "la-q3",
       question: "What is special about a matrix's eigenvectors?",
       options: [
-        "They are always the rows of the matrix",
-        "When the matrix transformation is applied, they are only scaled (by the eigenvalue), not rotated",
-        "They always have length one and point up",
-        "They are the largest numbers in the matrix",
+        "They are the rows of the matrix's inverse, sorted by their corresponding eigenvalues",
+        "They are the unit vectors aligned with the coordinate axes in the transformation's output space",
+        "They span the column space of the matrix and are always linearly independent from each other",
+        "When the matrix transformation is applied, they are only scaled (by the eigenvalue), not rotated"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "An eigenvector v satisfies Av = λv: the transformation only stretches or shrinks it by the eigenvalue λ. Eigenvectors reveal a matrix's natural axes — exactly what PCA exploits.",
     },
@@ -224,10 +224,10 @@ export const linearAlgebra: Subject = {
       question:
         "In regression, why do perfectly correlated features break the normal equation (XᵀX)⁻¹Xᵀy?",
       options: [
-        "They make the dataset too large",
+        "Correlated features increase the rank of XᵀX beyond the number of observations, making the system overdetermined",
         "They make XᵀX singular (an eigenvalue of zero), so it cannot be inverted",
-        "They change the units of the target",
-        "They make the dot product negative",
+        "Correlated features cause the matrix X to exceed memory limits, preventing inversion",
+        "They produce negative eigenvalues in XᵀX, which violates the symmetry required for inversion",
       ],
       correctIndex: 1,
       explanation:
@@ -237,12 +237,12 @@ export const linearAlgebra: Subject = {
       id: "la-q5",
       question: "What does 'vectorisation' mean in practice?",
       options: [
-        "Converting text into vectors",
         "Replacing explicit loops with matrix/array operations for speed",
-        "Drawing vectors as arrows",
-        "Adding more features to the data",
+        "Converting raw text or categorical data into dense numeric vector representations",
+        "Storing model parameters as dense vectors rather than sparse dictionaries for memory efficiency",
+        "Normalising each feature vector to unit length before passing it to the model"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Vectorisation expresses computation as array/matrix operations rather than Python loops. Libraries like NumPy execute these in optimised low-level code, turning hours of computation into seconds.",
     },

@@ -2744,3 +2744,83 @@
   #code-ref-poster .poster-title { color: #111 !important; }
   #code-ref-poster .poster-foot { color: #aaa !important; border-top-color: #ddd !important; font-size: 9px !important; }
 }
+
+/* ── Mobile / phone layout (≤ 480px) ──────────────────────── */
+@media (max-width: 480px) {
+  /* Shell header */
+  .shell-bar { padding: 10px 14px 0; }
+  .shell-bar-top { gap: 10px; margin-bottom: 8px; }
+  .shell-back { font-size: 12px; }
+  .shell-id { font-size: 15px; gap: 6px; }
+  .shell-icon { font-size: 15px; }
+
+  /* Progress pair → hide text label, shrink bar */
+  .shell-progress-pair { margin-right: 8px; min-width: 0; }
+  .shell-prog-label { display: none; }
+  .shell-prog-track { width: 46px; }
+  .shell-progress { min-width: 0; }
+
+  /* Tabs: scroll horizontally so all four fit */
+  .shell-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 0;
+    margin: 0 -14px;
+    padding: 0 14px;
+  }
+  .shell-tabs::-webkit-scrollbar { display: none; }
+  .shell-tab {
+    font-size: 12.5px;
+    padding: 9px 12px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Reader body */
+  .reader-main { padding: 24px 16px 60px; }
+  .reader-title { font-size: 24px; }
+  .reader-para { font-size: 15px; }
+  .reader-rail-inner { padding: 20px 16px; }
+
+  /* Home nav */
+  .home-nav-inner { padding: 0 16px; height: 48px; }
+  .home-eyebrow { font-size: 10px; letter-spacing: 0.12em; }
+
+  /* Home hero */
+  .home-hero { padding: 32px 0 28px; margin-bottom: 32px; }
+  .home-title { font-size: 32px; }
+  .home-lede { font-size: 15px; }
+
+  /* Phase cards on home */
+  .home-phase-head { padding: 10px 14px; }
+
+  /* Learning path strip */
+  .shell-path-strip { padding: 8px 14px 0; }
+
+  /* Quiz */
+  .quiz-q-text { font-size: 16px; }
+  .quiz-opt { font-size: 14px; padding: 12px 14px; gap: 10px; }
+
+  /* Exercise / editor */
+  .ex-prompt p { font-size: 15px; }
+  .ex-editor { font-size: 13px; }
+
+  /* Coding cheat sheet toggle */
+  .code-ref-toggle { font-size: 13px; padding: 9px 14px; }
+
+  /* Callout / table overflow */
+  .reader-table-wrap { margin: 16px -2px; }
+  .reader-callout { padding: 14px 14px; }
+
+  /* Progress nav at bottom */
+  .reader-nav { padding: 16px; gap: 8px; }
+  .reader-nav-btn { font-size: 13px; padding: 10px 14px; }
+
+  /* Theory page count pill */
+  .reader-page-count { font-size: 12px; }
+
+  /* Shell switcher arrows */
+  .shell-arrow { width: 28px; height: 28px; font-size: 14px; }
+  .shell-id-btn { font-size: 14px; padding: 5px 10px; }
+}

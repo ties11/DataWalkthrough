@@ -164,12 +164,12 @@ export const biasVarianceTradeoff: Subject = {
       id: "bv-q1",
       question: "A model performs poorly on both the training set and the test set. What is the likely diagnosis?",
       options: [
-        "High variance (overfitting)",
-        "High bias (underfitting) — the model is too simple",
-        "The data is too clean",
-        "There is nothing wrong",
+        "Irreducible error — the dataset is too noisy for any model to learn",
+        "High variance (overfitting) — the model memorised noise in training",
+        "Data leakage — training and test sets share information",
+        "High bias (underfitting) — the model is too simple"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Poor performance on both, with a small gap between them, signals high bias: the model is too simple to capture the pattern even in data it has seen. The fix is more complexity or better features.",
     },
@@ -177,10 +177,10 @@ export const biasVarianceTradeoff: Subject = {
       id: "bv-q2",
       question: "A model scores 99% on training data but only 70% on test data. What does this indicate?",
       options: [
-        "High bias (underfitting)",
+        "A scaling problem — features should be normalised before evaluation",
         "High variance (overfitting) — the model memorised noise",
-        "Irreducible error is too high",
-        "The model is perfectly tuned",
+        "High bias (underfitting) — the model's assumptions are too restrictive",
+        "Irreducible error — even an ideal model would score around 70%"
       ],
       correctIndex: 1,
       explanation:
@@ -190,10 +190,10 @@ export const biasVarianceTradeoff: Subject = {
       id: "bv-q3",
       question: "What are the three components of the bias–variance decomposition of error?",
       options: [
-        "Training, validation, and test error",
+        "Systematic error, random error, and measurement error",
         "Bias², variance, and irreducible error",
-        "Mean, median, and mode",
-        "Precision, recall, and accuracy",
+        "L1 loss, L2 loss, and cross-entropy loss",
+        "Training error, validation error, and test error"
       ],
       correctIndex: 1,
       explanation:
@@ -203,12 +203,12 @@ export const biasVarianceTradeoff: Subject = {
       id: "bv-q4",
       question: "As you increase a model's complexity, what typically happens to bias and variance?",
       options: [
-        "Both increase",
+        "Bias increases while variance decreases — the model becomes more stable",
+        "Both bias and variance increase — the model becomes harder to train",
         "Bias decreases while variance increases",
-        "Both decrease",
-        "Bias increases while variance decreases",
+        "Both bias and variance decrease — a more complex model is always better"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "More complexity lets the model represent richer patterns (lower bias) but also chase training-set quirks (higher variance). Total error follows a U-shape, minimised at the sweet spot between them.",
     },
@@ -216,12 +216,12 @@ export const biasVarianceTradeoff: Subject = {
       id: "bv-q5",
       question: "Your model is underfitting. Will collecting much more data fix it?",
       options: [
-        "Yes, more data always fixes underfitting",
         "No — more data reduces variance, but bias (a too-simple model) needs more capacity",
-        "Yes, but only if the data is shuffled",
-        "It will make the bias worse",
+        "No — underfitting is caused by noisy labels, not a lack of data",
+        "Yes — more data forces the model to generalise and reduces its assumptions",
+        "Yes — a larger dataset always reduces both bias and variance simultaneously"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "More data shrinks variance but does little for bias. A fundamentally too-simple model stays too simple no matter how much data it sees. Underfitting needs more complexity or better features, not more rows.",
     },
@@ -229,12 +229,12 @@ export const biasVarianceTradeoff: Subject = {
       id: "bv-q6",
       question: "What is the irreducible error?",
       options: [
-        "Error from a model that is too simple",
         "The inherent noise in the data that no model can ever remove",
-        "Error caused by bugs in the code",
-        "The gap between train and test scores",
+        "The gap between training and validation performance in a well-tuned model",
+        "Error that persists when the model underfits — fixable by adding complexity",
+        "Error introduced by using the wrong optimisation algorithm"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Irreducible error is the noise floor — the genuinely random part of the relationship that no model, however perfect, can predict. It sets a hard lower bound on achievable error.",
     },
@@ -242,12 +242,12 @@ export const biasVarianceTradeoff: Subject = {
       id: "bv-q7",
       question: "Which technique primarily reduces variance?",
       options: [
-        "Adding more features",
         "Regularisation (penalising complexity)",
-        "Increasing model depth",
-        "Reducing the amount of data",
+        "Increasing the learning rate to speed up convergence",
+        "Adding more polynomial features to capture non-linear patterns",
+        "Removing the train/test split and training on all available data"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Regularisation penalises complexity, pulling a too-flexible model back toward stability and reducing variance. Adding features or depth increases complexity and tends to raise variance.",
     },
@@ -255,10 +255,10 @@ export const biasVarianceTradeoff: Subject = {
       id: "bv-q8",
       question: "How does a random forest manage the bias–variance tradeoff?",
       options: [
-        "It increases bias deliberately",
+        "It trains shallow trees with high bias to avoid overfitting on noisy data",
         "It averages many high-variance trees to reduce variance",
-        "It removes the irreducible error",
-        "It always increases variance",
+        "It reduces bias by boosting misclassified examples in each successive tree",
+        "It prunes individual trees until each one has minimal variance on its own"
       ],
       correctIndex: 1,
       explanation:
@@ -268,12 +268,12 @@ export const biasVarianceTradeoff: Subject = {
       id: "bv-q9",
       question: "k-Nearest Neighbours with k=1 sits where on the tradeoff?",
       options: [
-        "High bias, low variance",
+        "Balanced — k=1 is considered the optimal midpoint between bias and variance",
+        "Low bias, low variance — using all the training data directly eliminates both",
         "Low bias, high variance — it follows every point exactly",
-        "Balanced",
-        "It has no bias or variance",
+        "High bias, low variance — a single neighbour cannot capture complex patterns"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "With k=1, the model follows every single training point, giving very low bias but very high variance — a single noisy point dictates its neighbourhood. Increasing k raises bias and lowers variance.",
     },
@@ -281,12 +281,12 @@ export const biasVarianceTradeoff: Subject = {
       id: "bv-q10",
       question: "What is 'double descent'?",
       options: [
-        "Training a model twice",
+        "When both bias and variance simultaneously decrease as training data grows large",
+        "The phenomenon where reducing the learning rate twice in succession improves convergence",
         "A modern finding that test error can fall again past the point of fitting training data perfectly, in very large models",
-        "When both bias and variance descend to zero",
-        "A type of gradient descent",
+        "Running two separate gradient descent optimisers and averaging their parameter updates"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "Double descent is the observation that for very large models, after the classic U-shaped rise, test error can decrease again beyond the interpolation point. It complicates — but doesn't replace — the everyday tradeoff.",
     },

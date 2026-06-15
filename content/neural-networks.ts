@@ -268,12 +268,12 @@ export const neuralNetworks: Subject = {
       question:
         "Why is a non-linear activation function essential in a neural network?",
       options: [
-        "It makes the network faster to train by reducing the number of gradient computations",
         "Without it, stacking multiple linear layers is equivalent to a single linear transformation",
-        "It ensures the output is always between 0 and 1",
-        "It prevents the weights from becoming too large during training",
+        "It normalises each layer's output so the inputs to subsequent layers have zero mean",
+        "It prevents gradients from becoming negative, which would cause weights to shrink during training",
+        "It enables the network to share weights across spatial positions, reducing the parameter count"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "A composition of linear transformations is itself a linear transformation. Without activation functions, no matter how many layers you stack, the network can only learn linear functions. Non-linear activations like ReLU break this, allowing each layer to learn non-linear features.",
     },
@@ -282,12 +282,12 @@ export const neuralNetworks: Subject = {
       question:
         "Backpropagation computes gradients by applying the chain rule of calculus through the computational graph. In which direction does it propagate?",
       options: [
-        "From the input layer toward the output layer",
-        "Simultaneously in both directions",
-        "From the output (loss) backward toward the input layer",
-        "From the hidden layers outward in both directions",
+        "Alternating forward and backward passes until the gradient norm falls below a threshold",
+        "From the input layer toward the output, mirroring the direction of the forward pass",
+        "Starting from the middle hidden layers outward toward both the input and output simultaneously",
+        "From the output (loss) backward toward the input layer"
       ],
-      correctIndex: 2,
+      correctIndex: 3,
       explanation:
         "Backpropagation propagates the gradient of the loss backward — from the output layer, where the loss is computed, back through each hidden layer to the input. At each step it applies the chain rule to compute how each parameter contributed to the loss.",
     },
@@ -296,12 +296,12 @@ export const neuralNetworks: Subject = {
       question:
         "The vanishing gradient problem makes it difficult to train very deep networks. Which two innovations most directly address it?",
       options: [
-        "Dropout and L2 regularisation",
         "ReLU activations and residual (skip) connections",
-        "Batch normalisation and weight decay",
-        "Larger batch sizes and higher learning rates",
+        "Larger batch sizes and adaptive learning rates — they reduce gradient noise and improve the signal-to-noise ratio",
+        "Dropout and L2 regularisation — they prevent weights from growing, keeping gradients stable",
+        "Batch normalisation and weight decay — they normalise activations to maintain a healthy gradient scale"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "ReLU has a constant gradient of 1 for positive inputs (unlike sigmoid/tanh which saturate), preventing gradient shrinkage. Residual connections add a shortcut from the input of a block directly to its output, providing a gradient highway that bypasses the layers and avoids multiplicative shrinkage across many layers.",
     },
@@ -310,12 +310,12 @@ export const neuralNetworks: Subject = {
       question:
         "You train a 10-layer neural network for 200 epochs and find it achieves 99% training accuracy but only 65% validation accuracy. What is the most likely diagnosis and fix?",
       options: [
-        "Underfitting — increase model capacity by adding more layers",
-        "The learning rate is too high — reduce it and retrain",
+        "A vanishing gradient — the 10-layer depth is causing gradients to die before reaching the input layers",
         "Overfitting — add regularisation (dropout, weight decay) or get more training data",
-        "The validation set is too small — increase it to get a reliable estimate",
+        "A data imbalance issue — the validation set likely has a different class distribution than the training set",
+        "Underfitting caused by an insufficient number of layers — add more hidden layers to increase capacity"
       ],
-      correctIndex: 2,
+      correctIndex: 1,
       explanation:
         "A large gap between training and validation accuracy is the hallmark of overfitting — the network has memorised the training data including its noise. Solutions include dropout, L2 weight decay, early stopping, data augmentation, or reducing model capacity.",
     },
@@ -324,12 +324,12 @@ export const neuralNetworks: Subject = {
       question:
         "Which output activation and loss function should you use for a 10-class image classification problem?",
       options: [
-        "Sigmoid output + mean squared error loss",
-        "ReLU output + cross-entropy loss",
+        "Tanh output + hinge loss, which encourages a large margin between the correct and incorrect class scores",
         "Softmax output + cross-entropy loss",
-        "Tanh output + binary cross-entropy loss",
+        "Sigmoid output + binary cross-entropy loss applied independently to each output neuron",
+        "ReLU output + mean squared error loss to penalise large prediction errors"
       ],
-      correctIndex: 2,
+      correctIndex: 1,
       explanation:
         "Softmax converts raw output scores (logits) into a valid probability distribution over classes (sums to 1, all positive). Cross-entropy loss measures how well the predicted distribution matches the true one-hot label. Together, they are the standard combination for multi-class classification.",
     },

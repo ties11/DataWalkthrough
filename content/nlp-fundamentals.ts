@@ -213,12 +213,12 @@ export const nlpFundamentals: Subject = {
       question:
         "In the TF-IDF formula, what happens to the score of a word that appears in every document in the corpus?",
       options: [
-        "It gets the highest possible score because it is universally relevant",
-        "Its IDF term becomes log(N/N) = 0, so TF-IDF = 0 regardless of term frequency",
-        "Its score is capped at 1.0 by the normalisation step",
-        "It depends on TF — if it appears many times in one document, the score remains high",
+        "The score is set to 1.0 as a ceiling value, since the word is maximally frequent across documents",
+        "The TF component is divided by the total number of documents, lowering the score proportionally",
+        "The TF value compensates for the small IDF — high term frequency in one document keeps the score high",
+        "Its IDF term becomes log(N/N) = 0, so TF-IDF = 0 regardless of term frequency"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "IDF = log(N / df), where df is the number of documents containing the word. If df = N (all documents), IDF = log(1) = 0. Multiplying by any TF gives 0. This is intentional — a word in every document carries no discriminative power, so TF-IDF suppresses it completely.",
     },
@@ -227,12 +227,12 @@ export const nlpFundamentals: Subject = {
       question:
         "Word2Vec learns embeddings by training on which self-supervised task?",
       options: [
-        "Classifying sentiment labels from a large annotated corpus",
-        "Predicting words from their surrounding context (or vice versa) in unlabelled text",
-        "Translating sentences between two languages",
-        "Generating summaries of paragraphs using human feedback",
+        "Minimising the reconstruction loss of a denoising autoencoder trained on masked word inputs",
+        "Predicting the next sentence given the current one, using paragraph pairs from Wikipedia",
+        "Learning to rank word pairs by semantic relatedness using crowd-sourced similarity ratings",
+        "Predicting words from their surrounding context (or vice versa) in unlabelled text"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Word2Vec uses a self-supervised auxiliary task — either predict a word given its context (CBOW) or predict context words given a word (Skip-gram) — on large amounts of unlabelled text. The task itself is discarded; the learned weight matrix (embedding) is the valuable output.",
     },
@@ -241,12 +241,12 @@ export const nlpFundamentals: Subject = {
       question:
         "In transformer self-attention, what allows the model to produce different representations of the word 'bank' in 'river bank' vs 'bank loan'?",
       options: [
-        "A separate lookup table for each word sense",
         "Each token attends to all other tokens, so 'bank' receives different context signals from 'river' vs 'loan'",
-        "The positional encoding encodes word meaning based on sentence position",
-        "Dropout randomly selects which embedding dimension represents word sense",
+        "The static word embedding for 'bank' is replaced with a context-specific embedding from a separate word-sense lookup table",
+        "The positional encoding shifts the embedding of 'bank' by a learned offset depending on its position",
+        "Multi-head attention assigns 'bank' to different heads for each sentence, with each head specialising in a different word sense"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Self-attention computes a weighted combination of all token representations, where the weights depend on how relevant each token is to the current one. 'Bank' in 'river bank' attends strongly to 'river', pulling in aquatic context. In 'bank loan', it attends to 'loan', pulling in financial context. The same token, different context → different representation.",
     },
@@ -255,12 +255,12 @@ export const nlpFundamentals: Subject = {
       question:
         "You have 800 labelled customer reviews for sentiment classification. Which approach is most likely to achieve the best accuracy?",
       options: [
-        "TF-IDF + Logistic Regression — any deep learning approach will overfit with so few examples",
-        "Train Word2Vec from scratch on the 800 reviews",
-        "Fine-tune the last 1–2 layers of a pre-trained BERT model on your 800 labelled examples",
-        "Build a character-level LSTM from scratch; character models generalise better",
+        "Train a Word2Vec model from scratch on the 800 reviews to learn sentiment-specific embeddings",
+        "Train a character-level LSTM from scratch — character models need less data since they avoid vocabulary sparsity",
+        "TF-IDF + Logistic Regression trained on the 800 reviews — pre-trained models overfit to general domain text, losing customer review specificity",
+        "Fine-tune the last 1–2 layers of a pre-trained BERT model on your 800 labelled examples"
       ],
-      correctIndex: 2,
+      correctIndex: 3,
       explanation:
         "800 examples is too few to train any neural network from scratch without catastrophic overfitting. Transfer learning from BERT — which has already seen billions of words and learned rich language representations — requires only fine-tuning a small classification head. This typically outperforms TF-IDF + LR at this data size.",
     },
@@ -269,12 +269,12 @@ export const nlpFundamentals: Subject = {
       question:
         "What is the key difference between BERT and GPT in terms of architecture and intended use?",
       options: [
-        "BERT uses CNNs; GPT uses RNNs",
-        "BERT reads text bidirectionally (full context), making it better for understanding; GPT reads left-to-right, making it better for generation",
-        "GPT is encoder-only; BERT is decoder-only",
-        "BERT is open-source; GPT is proprietary and cannot be fine-tuned",
+        "BERT uses a recurrent encoder with attention gates; GPT uses a transformer decoder with masked self-attention only",
+        "GPT uses positional encodings learned from the training corpus; BERT uses fixed sinusoidal encodings that do not update during training",
+        "BERT produces one vector per layer while GPT produces one vector per token, making GPT better for sequence labelling",
+        "BERT reads text bidirectionally (full context), making it better for understanding; GPT reads left-to-right, making it better for generation"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Both BERT and GPT are transformer-based. BERT uses a bidirectional encoder: each token can attend to all tokens both to the left and right — ideal for understanding tasks where the full sentence is available. GPT uses a left-to-right (causal) decoder: each token can only attend to previous tokens — ideal for generation tasks where you produce text one token at a time.",
     },

@@ -218,12 +218,12 @@ export const convolutionalNeuralNetworks: Subject = {
       question:
         "What is the key difference between a convolutional layer and a fully connected (dense) layer?",
       options: [
-        "A convolutional layer uses ReLU while a dense layer uses sigmoid activation",
-        "A convolutional layer uses the same filter weights at every spatial position (weight sharing), while a dense layer has independent weights for every input-output pair",
-        "A convolutional layer can only process grayscale images; a dense layer can process colour",
-        "A convolutional layer is only used in the final classifier; dense layers are used earlier",
+        "A convolutional layer connects each neuron only to a local patch of the input and applies batch normalisation automatically",
+        "A convolutional layer requires the input to be flattened into a vector, while a dense layer accepts 2-D spatial inputs directly",
+        "A convolutional layer is applied only after pooling; dense layers are used on the raw pixel values",
+        "A convolutional layer uses the same filter weights at every spatial position (weight sharing), while a dense layer has independent weights for every input-output pair"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Weight sharing is the defining property of convolution: the same filter slides over the entire input, using the same weights at every location. This enforces translation invariance (a feature is detected wherever it appears) and reduces parameters dramatically compared to a dense layer where every input is connected to every output by a unique weight.",
     },
@@ -231,8 +231,13 @@ export const convolutionalNeuralNetworks: Subject = {
       id: "cnn-q2",
       question:
         "A max pooling layer with a 2×2 window and stride 2 is applied to a 32×32 feature map. What is the output spatial size?",
-      options: ["32×32", "30×30", "16×16", "8×8"],
-      correctIndex: 2,
+      options: [
+        "16×16",
+        "30×30",
+        "32×32",
+        "8×8"
+      ],
+      correctIndex: 0,
       explanation:
         "Max pooling with a 2×2 window and stride 2 takes the maximum of each non-overlapping 2×2 block. With no padding, a 32×32 input produces a 16×16 output — exactly half the height and width in each dimension.",
     },
@@ -241,12 +246,12 @@ export const convolutionalNeuralNetworks: Subject = {
       question:
         "Why do early layers of a CNN tend to learn edge detectors, while later layers learn complex shapes?",
       options: [
-        "Early layers have fewer parameters and can only model simple patterns",
-        "Each layer's receptive field covers a larger region of the input; later layers combine many local features into higher-level concepts",
-        "Later layers apply more aggressive data augmentation",
-        "Pooling layers in the middle transform edge features into shape features automatically",
+        "Early layers are randomly initialised and have not yet been trained, so they default to detecting simple low-level statistics",
+        "Deeper layers use larger kernel sizes, so they physically see more of the image in one pass",
+        "Pooling layers inserted between conv blocks explicitly convert edge maps into semantic shape representations",
+        "Each layer's receptive field covers a larger region of the input; later layers combine many local features into higher-level concepts"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "The receptive field of a neuron grows with depth: a neuron in layer 3 indirectly covers a larger patch of the original image than a neuron in layer 1. Layer 1 neurons see tiny 3×3 patches and learn local patterns like edges; layer 3 neurons see combinations of those edges forming shapes; deeper layers see whole object parts or objects.",
     },
@@ -255,12 +260,12 @@ export const convolutionalNeuralNetworks: Subject = {
       question:
         "You have 500 labelled medical images and want to use a CNN for classification. What is the most sensible approach?",
       options: [
-        "Train a full ResNet-50 from scratch on your 500 images",
         "Use a pre-trained CNN (e.g. EfficientNet-B0) and replace only the classifier head; fine-tune with a small learning rate",
-        "Use a dense MLP because CNNs require at least 1 million images",
-        "Increase your dataset to at least 100,000 images before attempting any CNN",
+        "Train a full ResNet-50 from scratch — 500 images is sufficient because medical images have simpler features than natural photos",
+        "Train a large transformer-based ViT model from scratch, since transformers require less data than CNNs",
+        "Apply only traditional image processing (SIFT, HOG) because deep learning requires at least 50,000 images to outperform classical methods"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "With only 500 images, training from scratch will overfit catastrophically. Transfer learning from a pre-trained CNN (trained on ImageNet) provides generic visual features that transfer well to medical images. You replace the final classification head and fine-tune with a small learning rate — this approach works well with only a few hundred examples.",
     },
@@ -269,12 +274,12 @@ export const convolutionalNeuralNetworks: Subject = {
       question:
         "Which of the following best describes what data augmentation achieves during CNN training?",
       options: [
-        "It generates new real data by querying a separate dataset",
-        "It applies random but label-preserving transformations so the model sees different versions of each image per epoch, improving generalisation",
-        "It replaces batch normalisation to stabilise training",
-        "It increases model capacity by adding virtual neurons to the network",
+        "It upsamples the minority class by copying its images, which corrects class imbalance",
+        "It retrieves additional labelled examples from online image databases to expand the training set with real data",
+        "It compresses the feature maps to reduce memory usage during the forward pass",
+        "It applies random but label-preserving transformations so the model sees different versions of each image per epoch, improving generalisation"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Data augmentation (random flips, crops, colour jitter, rotations) creates varied views of each training image without changing its label. The model never sees exactly the same input twice, which forces it to learn invariant features rather than memorising pixel patterns. It is one of the most effective regularisation techniques for vision tasks.",
     },

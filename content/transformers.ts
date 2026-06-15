@@ -192,10 +192,10 @@ export const transformers: Subject = {
       id: "t-q1",
       question: "What does the scale factor √dₖ do in scaled dot-product attention?",
       options: [
-        "It normalises the keys to unit length",
+        "It projects each key to unit length, ensuring cosine similarity rather than dot-product similarity",
         "It prevents dot products from growing large and saturating the softmax",
-        "It reduces the number of attention heads required",
-        "It controls the learning rate for Q, K, V projections",
+        "It reduces the embedding dimension of Q and K to save memory during the attention computation",
+        "It equalises the learning rates for the Q, K, and V projection matrices",
       ],
       correctIndex: 1,
       explanation:
@@ -205,12 +205,12 @@ export const transformers: Subject = {
       id: "t-q2",
       question: "What is the key difference between BERT and GPT attention?",
       options: [
-        "BERT uses cross-attention; GPT uses self-attention",
+        "BERT uses cross-attention between sentence pairs; GPT uses self-attention only within a single sequence",
+        "GPT uses multi-head attention while BERT uses a simpler single-head attention mechanism",
         "BERT is bidirectional; GPT is causal (left-to-right only)",
-        "BERT uses more attention heads than GPT",
-        "GPT uses absolute positional encodings; BERT uses relative",
+        "BERT masks attention using relative position biases; GPT uses fixed sinusoidal absolute encodings"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "BERT can attend to all tokens in both directions (ideal for understanding), while GPT uses causal masking so each position only sees previous tokens (required for autoregressive generation).",
     },
@@ -218,12 +218,12 @@ export const transformers: Subject = {
       id: "t-q3",
       question: "In LoRA, what does the rank r control?",
       options: [
-        "The number of attention heads used during fine-tuning",
-        "The number of trainable parameters — lower r means fewer parameters",
-        "The learning rate schedule during adaptation",
-        "The number of layers that get updated",
+        "The fraction of layers that receive trainable adapters — lower r skips more layers",
+        "The number of attention heads that are unfrozen and fine-tuned during adaptation",
+        "The magnitude of the adapter updates relative to the frozen base model weights",
+        "The number of trainable parameters — lower r means fewer parameters"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "LoRA decomposes the weight update into two matrices of size d×r and r×d. Smaller r means fewer trainable parameters and lower VRAM, at the cost of some representational capacity.",
     },
@@ -231,12 +231,12 @@ export const transformers: Subject = {
       id: "t-q4",
       question: "Why are positional encodings needed in the transformer?",
       options: [
-        "To reduce the number of parameters in the attention layers",
-        "Because attention is permutation-invariant and doesn't encode token order",
-        "To allow the model to attend to tokens from different sentences",
-        "To replace the feed-forward layer in the encoder",
+        "They replace the need for a feed-forward sublayer, reducing the total parameter count by half",
+        "They are added to the key vectors to enable each query to directly compare its position to others",
+        "They encode the frequency of each token in the training corpus, improving rare-word representations",
+        "Because attention is permutation-invariant and doesn't encode token order"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Self-attention treats the input as a set, not a sequence. Without positional encodings, the model has no way to distinguish 'the cat sat on the mat' from any permutation of those tokens.",
     },
@@ -244,12 +244,12 @@ export const transformers: Subject = {
       id: "t-q5",
       question: "What does cross-attention in the decoder attend to?",
       options: [
-        "The decoder's own past outputs (causal self-attention)",
-        "A random subset of encoder tokens for efficiency",
-        "The full encoder output — every input position can be attended to",
-        "Only the final encoder hidden state",
+        "A fixed-size memory of the k most relevant encoder tokens, selected by a learned gating mechanism",
+        "The decoder's own past generated tokens, applying a causal mask to prevent attending to future positions",
+        "Only the final encoder hidden state, which is used as a context vector for all decoder positions",
+        "The full encoder output — every input position can be attended to"
       ],
-      correctIndex: 2,
+      correctIndex: 3,
       explanation:
         "Cross-attention lets each decoder position query the entire encoder output. This is how the decoder 'reads' the input to guide generation, with no masking on the encoder side.",
     },

@@ -164,12 +164,12 @@ export const classificationMetrics: Subject = {
       id: "cm-q1",
       question: "Why can a model with 99% accuracy be useless?",
       options: [
-        "Accuracy is always wrong",
-        "On imbalanced data it can score high by always predicting the majority class, catching none of the rare class",
-        "99% is a low score",
-        "Accuracy requires probabilities",
+        "Accuracy is computed on the training set, so it does not reflect test performance",
+        "A model scoring 99% has almost certainly memorised the training data and will not generalise",
+        "Accuracy counts true negatives but not true positives, so it overcounts correct predictions",
+        "On imbalanced data it can score high by always predicting the majority class, catching none of the rare class"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "If 99% of samples are negative, always predicting 'negative' scores 99% accuracy while catching zero positives. Accuracy is misleading on imbalanced data because it ignores which class the errors fall on.",
     },
@@ -177,12 +177,12 @@ export const classificationMetrics: Subject = {
       id: "cm-q2",
       question: "What does precision measure?",
       options: [
-        "Of all actual positives, how many were caught",
         "Of all predicted positives, how many are actually positive",
-        "The total number of correct predictions",
-        "The area under the ROC curve",
+        "The threshold-independent ranking ability of the model across all operating points",
+        "Of all actual positives in the dataset, how many the model successfully identified",
+        "The fraction of all predictions — both positive and negative — that are correct"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Precision = TP / (TP + FP): when the model predicts positive, how often is it right? High precision means few false alarms. It is distinct from recall, which measures coverage of actual positives.",
     },
@@ -190,12 +190,12 @@ export const classificationMetrics: Subject = {
       id: "cm-q3",
       question: "What does recall measure?",
       options: [
-        "Of all predicted positives, how many are correct",
-        "Of all actual positives, how many the model caught",
-        "How fast the model runs",
-        "The number of true negatives",
+        "The probability that a randomly chosen positive ranks above a randomly chosen negative",
+        "The ratio of correctly classified samples to the total number of predictions made",
+        "Of all predicted positives, how many are actually positive (avoiding false alarms)",
+        "Of all actual positives, how many the model caught"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Recall = TP / (TP + FN): of all the real positives, how many did the model find? High recall means few misses. It trades against precision as you change the decision threshold.",
     },
@@ -203,12 +203,12 @@ export const classificationMetrics: Subject = {
       id: "cm-q4",
       question: "For cancer screening, which metric should usually be prioritised?",
       options: [
-        "Precision — false alarms are the main concern",
-        "Recall — missing a sick patient (false negative) is catastrophic",
-        "Accuracy — it captures everything",
-        "Training speed",
+        "F1 score — it always provides the right balance between catching cases and avoiding alarms",
+        "Precision — false alarms result in costly unnecessary treatments, which must be minimised",
+        "AUC-ROC — it is the standard metric whenever classes are rare",
+        "Recall — missing a sick patient (false negative) is catastrophic"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "In screening, a false negative (missing a sick patient) is far costlier than a false positive (an extra test). Recall, which minimises misses, is therefore prioritised.",
     },
@@ -216,10 +216,10 @@ export const classificationMetrics: Subject = {
       id: "cm-q5",
       question: "What is a false positive?",
       options: [
-        "Predicting negative when the truth is positive (a miss)",
+        "A case where the model predicts the correct label but with low confidence",
         "Predicting positive when the truth is negative (a false alarm)",
-        "A correct positive prediction",
-        "A correct negative prediction",
+        "A positive sample that the model correctly identifies with high precision",
+        "Predicting negative when the truth is positive — the model misses a real case"
       ],
       correctIndex: 1,
       explanation:
@@ -229,12 +229,12 @@ export const classificationMetrics: Subject = {
       id: "cm-q6",
       question: "Why is the F1 score the harmonic mean of precision and recall rather than the arithmetic mean?",
       options: [
-        "It is easier to compute",
         "The harmonic mean punishes imbalance, so you can't game it by maxing one and ignoring the other",
-        "It gives a higher number",
-        "There is no reason",
+        "The harmonic mean is bounded between 0 and 100, making it easier to interpret as a percentage",
+        "The arithmetic mean gives too much weight to precision, which is typically larger than recall",
+        "The harmonic mean can be computed without knowing the number of true negatives"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "The harmonic mean is low if either precision or recall is low, so F1 rewards models that do well on both. The arithmetic mean could be fooled by an extreme value in one of them.",
     },
@@ -242,10 +242,10 @@ export const classificationMetrics: Subject = {
       id: "cm-q7",
       question: "What does ROC-AUC of 0.5 indicate?",
       options: [
-        "A perfect classifier",
+        "The model's precision and recall are equal at every possible decision threshold",
         "A model no better than random guessing",
-        "Half the data is mislabeled",
-        "Precision equals recall",
+        "The model is perfect — it correctly classifies exactly half the examples from each class",
+        "The model outputs constant probabilities of 0.5 for all inputs"
       ],
       correctIndex: 1,
       explanation:
@@ -255,12 +255,12 @@ export const classificationMetrics: Subject = {
       id: "cm-q8",
       question: "What is the probabilistic interpretation of AUC?",
       options: [
-        "The fraction of correct predictions",
         "The probability the model ranks a random positive higher than a random negative",
-        "The precision at threshold 0.5",
-        "The number of true positives",
+        "The proportion of positive-class predictions that are correct at threshold 0.5",
+        "The fraction of the total probability mass assigned correctly to positive examples",
+        "The expected accuracy of the model when the decision threshold is chosen optimally"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "AUC equals the probability that a randomly chosen positive example receives a higher score than a randomly chosen negative one — a measure of ranking ability independent of any specific threshold.",
     },
@@ -268,12 +268,12 @@ export const classificationMetrics: Subject = {
       id: "cm-q9",
       question: "How does changing the decision threshold affect precision and recall?",
       options: [
-        "It changes neither",
+        "Raising the threshold flags more positives: recall rises while precision usually falls",
+        "The threshold only affects the ROC curve, not precision or recall directly",
+        "Both precision and recall increase together as the threshold is lowered toward zero",
         "Lowering the threshold flags more positives: recall rises, precision usually falls",
-        "Both always increase together",
-        "It only affects accuracy",
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "A lower threshold predicts positive more readily, catching more true positives (higher recall) but also more false ones (lower precision). The threshold is the dial that trades one against the other.",
     },
@@ -281,12 +281,12 @@ export const classificationMetrics: Subject = {
       id: "cm-q10",
       question: "On heavily imbalanced data with rare positives, which is often more honest than ROC-AUC?",
       options: [
-        "Accuracy",
-        "The precision-recall curve and its area",
-        "Training loss",
-        "The number of features",
+        "Macro-averaged F1 score computed across all decision thresholds simultaneously",
+        "Accuracy weighted by class frequency, which adjusts for the imbalance in the denominator",
+        "Cross-entropy loss, which naturally penalises overconfident predictions on rare classes",
+        "The precision-recall curve and its area"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "ROC-AUC can look high on imbalanced data because abundant true negatives flatter the false-positive rate. The precision-recall curve focuses on the minority class, giving a more honest picture for rare positives.",
     },

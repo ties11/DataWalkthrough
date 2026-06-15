@@ -207,12 +207,12 @@ export const dbscan: Subject = {
       id: "db-q1",
       question: "A point has 2 neighbours within ε, but minPts = 5. What type of point is it?",
       options: [
-        "Core point — it has at least one neighbour",
         "Border point only if it is within ε of a core point; otherwise noise",
-        "Always a noise point because it has fewer than minPts neighbours",
-        "Its type depends on the number of clusters found",
+        "A core point — any point with at least one neighbour within ε qualifies as a core point",
+        "Always noise — once a point has fewer than minPts neighbours it can never join a cluster",
+        "A core point if its two neighbours together have enough neighbours to meet the minPts threshold"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "With fewer than minPts neighbours, the point cannot be a core point. Whether it is a border point or noise depends on whether it falls within ε of some other core point. If it does, it gets assigned to that core point's cluster; otherwise it is labelled noise (−1).",
     },
@@ -220,12 +220,12 @@ export const dbscan: Subject = {
       id: "db-q2",
       question: "You want to cluster crescent-shaped regions in 2-D data. Which algorithm is better suited?",
       options: [
-        "K-Means with K=2, because crescents can be approximated by two centroids",
+        "Gaussian Mixture Models — they model elongated ellipsoidal clusters that can approximate crescents",
+        "K-Means with K=2 — with enough restarts the centroids will converge to the centre of each crescent",
         "DBSCAN, because it finds clusters of arbitrary shape based on density",
-        "PCA, because it can reduce the data to the natural crescent directions",
-        "K-Means with many restarts will eventually find the crescents",
+        "Hierarchical agglomerative clustering with Ward linkage, which naturally handles curved boundaries"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "K-Means assigns every point to the nearest centroid, creating Voronoi cells with straight-line boundaries. Crescents are non-convex and cannot be separated this way. DBSCAN finds clusters as connected dense regions regardless of shape, so it correctly identifies both crescents.",
     },
@@ -233,12 +233,12 @@ export const dbscan: Subject = {
       id: "db-q3",
       question: "What does increasing ε (keeping minPts fixed) do to a DBSCAN result?",
       options: [
-        "Creates more, smaller clusters with more noise points",
         "Creates fewer, larger clusters by merging previously separate dense regions",
-        "Has no effect — only minPts determines cluster boundaries",
-        "Increases the number of core points but leaves cluster count unchanged",
+        "Creates more, smaller clusters by forcing points in dense regions to form tighter groups",
+        "Increases minPts proportionally so the density threshold remains constant",
+        "Converts border points to noise points because their neighbourhoods now contain fewer relative neighbours"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Larger ε expands each point's neighbourhood. Points that were previously out of reach become neighbours, turning some noise and border points into core points, and merging clusters that were separated by small gaps. At the extreme, all points merge into one cluster.",
     },
@@ -246,12 +246,12 @@ export const dbscan: Subject = {
       id: "db-q4",
       question: "How should you determine a good value for ε when applying DBSCAN?",
       options: [
-        "Set ε to the mean distance between all pairs of points in the dataset",
         "Plot the sorted k-nearest-neighbour distances and pick ε at the elbow of the curve",
-        "Run DBSCAN for many ε values and pick the one with lowest inertia",
-        "ε = 1 / minPts is always the correct formula",
+        "Set ε to the standard deviation of pairwise distances, which captures typical inter-point spacing",
+        "Run DBSCAN across a grid of ε values and select the one that minimises within-cluster inertia",
+        "Apply cross-validation with silhouette score as the target metric, treating ε as a hyperparameter"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "The k-distance plot (sort each point's distance to its k-th nearest neighbour in descending order) shows a sharp bend between the dense region and the sparse region. Setting ε at the elbow captures the dense clusters while excluding the sparse noise region.",
     },
@@ -259,12 +259,12 @@ export const dbscan: Subject = {
       id: "db-q5",
       question: "DBSCAN returns cluster label −1 for many points. What is the most useful interpretation?",
       options: [
-        "The algorithm failed to converge and should be re-run",
-        "Those points were assigned to cluster 0 which is labeled −1 by convention",
         "Those points are noise: they lie in sparse regions not belonging to any dense cluster",
-        "ε is too large — reduce it so more points get positive labels",
+        "ε is too small — those points need a larger neighbourhood radius to be classified as border points",
+        "Those points form a background cluster that DBSCAN labels −1 to distinguish it from foreground clusters",
+        "The number of clusters found exceeds the index range, so overflow resets to −1 for the last cluster"
       ],
-      correctIndex: 2,
+      correctIndex: 0,
       explanation:
         "Label −1 is DBSCAN's explicit noise label. It means the point has fewer than minPts neighbours within ε and does not fall within ε of any core point — it is genuinely isolated. A high noise fraction usually means ε is too small (tighten or enlarge ε), but some noise is expected and often meaningful (real outliers).",
     },

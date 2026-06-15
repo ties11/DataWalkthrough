@@ -163,12 +163,12 @@ export const gradientBoosting: Subject = {
       id: "gb-q1",
       question: "How does gradient boosting build its ensemble of trees?",
       options: [
-        "Independently and in parallel, then averaged",
-        "Sequentially, each new tree correcting the errors of the current ensemble",
-        "By selecting the single best tree",
-        "All trees are identical copies",
+        "A single large tree is iteratively pruned until the depth matches the number of boosting rounds",
+        "Trees are built in parallel and combined via a weighted majority vote based on their accuracy",
+        "Each tree is trained on a random bootstrap sample and the results are averaged to reduce variance",
+        "Sequentially, each new tree correcting the errors of the current ensemble"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Boosting builds trees one at a time, each trained to fix the residual errors left by the trees so far. This sequential error-correction contrasts with a random forest's independent, parallel trees.",
     },
@@ -176,10 +176,10 @@ export const gradientBoosting: Subject = {
       id: "gb-q2",
       question: "What does each new tree in gradient boosting actually fit?",
       options: [
-        "The original target values again",
+        "The cumulative average of all previous tree outputs, scaled by the learning rate",
         "The residuals — the negative gradient of the loss with respect to current predictions",
-        "A random subset of features only",
-        "The average of all previous trees",
+        "The original target labels, re-weighted so misclassified examples receive higher weight",
+        "A random feature subset to encourage diversity and reduce correlation between trees"
       ],
       correctIndex: 1,
       explanation:
@@ -189,12 +189,12 @@ export const gradientBoosting: Subject = {
       id: "gb-q3",
       question: "Compared with a random forest, gradient boosting mainly reduces which error?",
       options: [
-        "Variance, by averaging independent trees",
+        "Irreducible error, by weighting training examples to remove the effect of label noise",
+        "Both bias and variance simultaneously, since sequential building is strictly superior to parallel",
         "Bias, by sequentially adding corrections to the residual error",
-        "Neither — they are identical",
-        "Only measurement error in the data",
+        "Variance, by averaging independent trees — the same mechanism as a random forest"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "Random forests reduce variance by averaging high-variance trees; boosting reduces bias by repeatedly correcting remaining error. This is why boosting often reaches higher accuracy but overfits more easily.",
     },
@@ -202,12 +202,12 @@ export const gradientBoosting: Subject = {
       id: "gb-q4",
       question: "How do learning rate and number of trees trade off in gradient boosting?",
       options: [
-        "They are unrelated",
         "A smaller learning rate needs more trees but usually generalises better",
-        "A larger learning rate always needs more trees",
-        "Both should be as large as possible",
+        "A larger learning rate is strictly better and always needs fewer trees to reach the same accuracy",
+        "The two are independent — the optimal number of trees is always determined by cross-validation alone",
+        "A larger learning rate needs more trees to counteract the instability introduced by large steps"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "A small learning rate makes each tree's contribution cautious, requiring more trees to converge, but typically generalising better. The standard recipe is low learning rate + many trees + early stopping.",
     },
@@ -215,10 +215,10 @@ export const gradientBoosting: Subject = {
       id: "gb-q5",
       question: "Why is early stopping important for gradient boosting but less so for random forests?",
       options: [
-        "Random forests cannot be stopped early",
+        "Random forests apply regularisation internally via subsampling, which makes them immune to overfitting",
         "Adding too many boosting trees starts fitting noise and degrades test performance",
-        "Early stopping makes training slower",
-        "Boosting trees never overfit",
+        "Early stopping is irrelevant for both — the number of trees is always a tunable hyperparameter",
+        "Gradient boosting uses deeper trees than random forests, and deeper trees always require more careful stopping"
       ],
       correctIndex: 1,
       explanation:

@@ -160,12 +160,12 @@ export const logisticRegression: Subject = {
       id: "lr-q1",
       question: "Despite its name, what kind of algorithm is logistic regression?",
       options: [
-        "A regression algorithm predicting continuous numbers",
         "A classification algorithm that outputs probabilities",
-        "A clustering algorithm",
-        "A dimensionality reduction technique",
+        "A regression algorithm that predicts a continuous target bounded between 0 and 1",
+        "A semi-supervised algorithm that combines regression on labelled data with clustering on unlabelled data",
+        "A regression algorithm that transforms the target with a log function before fitting"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Logistic regression is a classification algorithm. It computes a linear score then passes it through the sigmoid to output a probability between 0 and 1, which is thresholded into a class decision.",
     },
@@ -173,12 +173,12 @@ export const logisticRegression: Subject = {
       id: "lr-q2",
       question: "What does the sigmoid function do to the linear score z?",
       options: [
-        "Squares it",
-        "Maps any real number onto the interval (0, 1) as a probability",
-        "Rounds it to the nearest integer",
-        "Leaves it unchanged",
+        "Normalises z by the sum of all class scores to produce a valid probability distribution",
+        "Clips the score to [−1, 1] so the model cannot output extreme predictions",
+        "Applies the natural logarithm to convert the score into a log-odds representation",
+        "Maps any real number onto the interval (0, 1) as a probability"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "The sigmoid σ(z) = 1/(1+e^−z) squashes any real-valued score into (0, 1). Large positive z → near 1, large negative z → near 0, and z = 0 → exactly 0.5 (the decision boundary).",
     },
@@ -186,12 +186,12 @@ export const logisticRegression: Subject = {
       id: "lr-q3",
       question: "Why does logistic regression use cross-entropy loss instead of squared error?",
       options: [
-        "Squared error is slower to compute",
         "Squared error against a sigmoid is non-convex; cross-entropy is convex with one global minimum",
-        "Cross-entropy ignores the labels",
-        "There is no real difference",
+        "Cross-entropy is faster to compute because it avoids the squaring operation on each residual",
+        "Squared error requires the labels to be continuous, whereas cross-entropy handles binary labels",
+        "Cross-entropy produces sparser gradients, which speeds up convergence for high-dimensional features"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Squared error against the sigmoid produces a non-convex surface with bad local minima. Cross-entropy is convex for logistic regression, so gradient descent reliably finds the single global optimum.",
     },
@@ -199,12 +199,12 @@ export const logisticRegression: Subject = {
       id: "lr-q4",
       question: "In scikit-learn, what does a SMALLER value of the parameter C do?",
       options: [
-        "Applies weaker regularisation, fitting training data harder",
         "Applies stronger regularisation, producing a simpler model",
-        "Increases the number of classes",
-        "Disables the sigmoid",
+        "Reduces the learning rate so that gradient descent takes smaller steps",
+        "Limits the maximum number of iterations before the solver declares convergence",
+        "Applies weaker regularisation, allowing the model to fit the training data harder"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "C is the inverse of regularisation strength. A smaller C means stronger regularisation and a simpler model; a larger C lets the model fit more aggressively. This inversion is a common source of confusion.",
     },
@@ -212,12 +212,12 @@ export const logisticRegression: Subject = {
       id: "lr-q5",
       question: "How should you interpret a logistic regression coefficient β for a feature?",
       options: [
-        "A one-unit increase in the feature adds β to the probability",
+        "β is the feature's standardised importance, directly comparable to coefficients from other features",
+        "β represents the partial derivative of accuracy with respect to that feature across the training set",
         "A one-unit increase multiplies the odds of the positive class by e^β",
-        "It is the accuracy contribution of that feature",
-        "It has no interpretable meaning",
+        "A one-unit increase in the feature adds β directly to the predicted probability of the positive class"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "The linear score is the log-odds, so a coefficient acts multiplicatively on the odds: a one-unit increase multiplies the odds by e^β. The model is linear in log-odds, even though it curves in probability.",
     },

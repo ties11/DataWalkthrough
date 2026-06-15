@@ -223,12 +223,12 @@ export const timeSeries: Subject = {
       question:
         "You have monthly sales data from 2015–2023 and want to evaluate a forecasting model. Which validation approach is correct?",
       options: [
-        "Randomly split 80% training / 20% test across all months",
-        "Use k-fold cross-validation with k=5 on the full dataset",
+        "Evaluate on in-sample residuals for all years because time series are too short for a separate test set",
         "Train on 2015–2021 data, test on 2022–2023 data, preserving time order",
-        "Evaluate only on training data using in-sample residuals",
+        "Randomly split 80% training / 20% test across all months — random sampling ensures unbiased estimates",
+        "Use stratified 5-fold cross-validation, stratifying by year to ensure each fold covers the full date range"
       ],
-      correctIndex: 2,
+      correctIndex: 1,
       explanation:
         "Time series must be split chronologically. A random split allows the model to be trained on future data and tested on the past — information leakage that produces optimistically biased error estimates. The training set must strictly precede the test set in time.",
     },
@@ -237,12 +237,12 @@ export const timeSeries: Subject = {
       question:
         "The ACF of a time series shows a slow, linear decay across many lags. What does this indicate?",
       options: [
-        "The series is stationary and ready for ARIMA modelling",
+        "The series has strong seasonality — the period of the pattern equals the lag at which the ACF peaks",
+        "The series has a pure moving-average structure and can be fitted with ARIMA(0, 0, q) directly",
         "The series is non-stationary — likely a random walk or trending series",
-        "The series has a strong seasonal component at the first significant lag",
-        "The series has a moving-average (MA) structure and needs no differencing",
+        "The series is stationary — the slowly decaying ACF confirms that correlations fade over time"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "A slow, persistent decay in the ACF is the signature of a non-stationary (unit-root) series, such as a random walk or a trend. Stationary series have ACFs that decay quickly to zero. The fix is to difference the series (I component of ARIMA) before fitting.",
     },
@@ -250,12 +250,12 @@ export const timeSeries: Subject = {
       id: "ts-q3",
       question: "What does the 'd' parameter in ARIMA(p, d, q) control?",
       options: [
-        "The number of autoregressive terms (past values used as predictors)",
-        "The number of differencing operations applied to make the series stationary",
-        "The number of moving-average terms (past forecast errors used as predictors)",
-        "The seasonal period of the model",
+        "The lag window size for the autoregressive component — how many past observations feed into the model",
+        "The periodic seasonal frequency — for monthly data this is set to d = 12",
+        "The decay rate of the moving-average component, controlling how quickly past errors lose influence",
+        "The number of differencing operations applied to make the series stationary"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "In ARIMA(p, d, q): p = AR order (how many past values), d = Integration (how many times the series is differenced to achieve stationarity), q = MA order (how many past errors). A series with a linear trend typically needs d = 1; a series with a quadratic trend might need d = 2.",
     },
@@ -264,12 +264,12 @@ export const timeSeries: Subject = {
       question:
         "Mean Absolute Percentage Error (MAPE) has a well-known practical limitation. What is it?",
       options: [
-        "It cannot be computed for values greater than 1",
         "It is undefined (division by zero) when actual values are zero, and is asymmetric — underforecasts are penalised more",
-        "It always overestimates forecast accuracy compared to RMSE",
-        "It can only be applied to stationary time series",
+        "It requires the forecast horizon to be fixed in advance, making it unsuitable for rolling forecasts",
+        "MAPE double-counts errors for seasonal series because it averages across all periods equally",
+        "MAPE is scale-dependent — a 10-unit error on a series with small values dominates the average"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "MAPE = mean |actual − forecast| / |actual|. When the actual value is zero, division by zero is undefined. Additionally, MAPE is asymmetric: a 50% underforecast (predicting 50 when actual is 100) gives MAPE = 50%, but a 50% overforecast (predicting 150 when actual is 100) also gives 50%. Symmetric MAPE (sMAPE) corrects the latter issue.",
     },
@@ -278,12 +278,12 @@ export const timeSeries: Subject = {
       question:
         "Which approach is most appropriate for forecasting 500 different retail store-product combinations simultaneously, using promotional spend as a known future covariate?",
       options: [
-        "Fit a separate ARIMA model to each series independently",
-        "Average all 500 series into one and forecast the aggregate",
         "A tree-based model (e.g. LightGBM) with lag features, rolling statistics, and the covariate as an input column",
-        "SARIMA is always superior to ML for seasonal retail data",
+        "Apply SARIMA with external regressors (SARIMAX) to each series separately, since SARIMA always outperforms ML on seasonal retail data",
+        "Average all 500 series into one aggregate series, forecast it, and allocate the forecast down proportionally",
+        "Fit a separate ARIMA model to each of the 500 series, then aggregate the forecasts for reporting"
       ],
-      correctIndex: 2,
+      correctIndex: 0,
       explanation:
         "Fitting 500 separate ARIMA models is expensive and ignores information shared across series. Tree-based models (LightGBM, XGBoost) with lag features and covariates handle hundreds of series efficiently in a single model, exploit cross-series patterns, and naturally incorporate external variables like promotional spend.",
     },

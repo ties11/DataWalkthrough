@@ -197,12 +197,12 @@ export const statisticsProbability: Subject = {
       question:
         "A dataset of incomes has one billionaire among ordinary earners. Which measure of centre best describes a typical income?",
       options: [
-        "The mean, because it uses every value",
+        "The interquartile range — it captures the middle 50% of earners most precisely",
+        "The mean — using all values is always more accurate than ignoring any of them",
         "The median, because it is robust to the extreme outlier",
-        "The mode, because incomes repeat",
-        "The variance, because it measures spread",
+        "The trimmed mean — removing the top and bottom 5% of values before averaging"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "The mean is dragged upward by the billionaire; the median (the middle value) barely moves and represents a typical income honestly. This is why median income is the standard reported statistic.",
     },
@@ -210,12 +210,12 @@ export const statisticsProbability: Subject = {
       id: "sp-q2",
       question: "Why is the normal distribution so ubiquitous in nature and statistics?",
       options: [
-        "Because all data is naturally bell-shaped",
+        "It is the maximum-entropy distribution — nature always chooses the most uncertain distribution consistent with a given mean and variance",
+        "It is the only distribution whose mean, median, and mode coincide, making it mathematically unique",
         "Because of the Central Limit Theorem: sums of many independent effects tend toward normal",
-        "Because it is the only distribution with a mean",
-        "Because computers can only represent normal distributions",
+        "Most real-world measurements are bounded between 0 and 1, which forces them into a bell curve shape"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "The CLT says averages and sums of many independent random variables converge to a normal distribution regardless of the original shape. This is why measurement errors and sample means are approximately normal.",
     },
@@ -224,12 +224,12 @@ export const statisticsProbability: Subject = {
       question:
         "A disease affects 1% of people. A test is 99% accurate. You test positive. Roughly how worried should you be?",
       options: [
-        "Almost certainly have it — the test is 99% accurate",
-        "The probability is actually moderate, because most positives come from the healthy 99%",
-        "It is impossible to say without more tests",
-        "Exactly 99% likely to have it",
+        "Very worried — the test is 99% accurate, so the chance of a false positive is only 1%",
+        "Certain to have it — a 99% accurate test on a positive result means 99% posterior probability",
+        "Mildly worried — since the disease is rare, positive tests are always false positives",
+        "The probability is actually moderate, because most positives come from the healthy 99%"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "This is the base-rate trap. Because the disease is rare, false positives from the large healthy majority swamp the true positives. Bayes' theorem shows the actual probability is far below 99%.",
     },
@@ -238,12 +238,12 @@ export const statisticsProbability: Subject = {
       question:
         "What does standard deviation measure that variance does not convey as directly?",
       options: [
-        "The centre of the data",
-        "Spread expressed in the original units of the data",
-        "The number of outliers",
-        "The most common value",
+        "The minimum distance between any two distinct values in the dataset",
+        "The asymmetry of the distribution — how far the mean lies from the median",
+        "The probability of observing a value more than two units away from the mean",
+        "Spread expressed in the original units of the data"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Variance is in squared units (e.g. dollars²), which is hard to interpret. Taking the square root gives the standard deviation, returning spread to the original units (dollars) — directly comparable to the mean.",
     },
@@ -252,10 +252,10 @@ export const statisticsProbability: Subject = {
       question:
         "In machine learning, what statistical idea does a model's loss function most directly represent?",
       options: [
-        "The mode of the predictions",
+        "The likelihood of the training labels under a uniform prior, which is maximised rather than minimised",
         "An expectation (expected error) that the model minimises",
-        "The number of features",
-        "The correlation between inputs",
+        "The variance of the residuals, which measures how spread out the model's mistakes are",
+        "The entropy of the target distribution, which bounds the minimum achievable loss",
       ],
       correctIndex: 1,
       explanation:

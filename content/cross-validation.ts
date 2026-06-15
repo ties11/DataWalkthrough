@@ -144,10 +144,10 @@ export const crossValidation: Subject = {
       id: "cv-q1",
       question: "Why is a single train/test split an unreliable measure of model performance?",
       options: [
-        "It uses too much data for training",
+        "The split can only be used once, which means the model can never be re-trained after evaluation",
         "The score depends on which rows randomly land in the test set, so it is noisy",
-        "It always overestimates accuracy",
-        "It cannot be computed for classifiers",
+        "A single split prevents the model from seeing all classes, making recall undefined",
+        "Using more training data reduces generalisation, so any fixed split wastes data"
       ],
       correctIndex: 1,
       explanation:
@@ -157,12 +157,12 @@ export const crossValidation: Subject = {
       id: "cv-q2",
       question: "In 5-fold cross-validation, how many times is each data point used for testing?",
       options: [
-        "Five times",
+        "It depends on the class balance and whether stratification is used",
+        "Five times — every data point appears in every fold's test set",
         "Exactly once",
-        "Four times",
-        "It varies randomly",
+        "Zero or one times, depending on whether it falls in the held-out fold by chance"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "The data is split into 5 folds; each fold serves as the test set exactly once while the other four train. So every point is tested once and trained on four times.",
     },
@@ -170,12 +170,12 @@ export const crossValidation: Subject = {
       id: "cv-q3",
       question: "What problem does stratified k-fold cross-validation solve?",
       options: [
-        "It makes training faster",
         "It preserves class proportions in each fold, crucial for imbalanced data",
-        "It removes outliers from folds",
-        "It allows shuffling of time series",
+        "It groups correlated observations together to prevent information leaking between folds",
+        "It sorts folds chronologically so temporal models are never tested on past data",
+        "It ensures each fold has an equal number of training samples, reducing variance across folds"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Stratified folds keep the overall class balance in every fold. Without it, a random fold of imbalanced data might contain almost none of the minority class, making its score meaningless.",
     },
@@ -183,12 +183,12 @@ export const crossValidation: Subject = {
       id: "cv-q4",
       question: "Why must you never shuffle time-series data before cross-validation?",
       options: [
-        "Shuffling is too slow",
-        "It would let the model train on future data and test on past — leaking information",
-        "Time series cannot be cross-validated at all",
-        "Shuffling changes the units",
+        "Shuffling invalidates the stationarity assumption, causing feature scaling to fail",
+        "Shuffling destroys autocorrelation structure, causing the model to underfit temporal patterns",
+        "Shuffled time series cannot be split into equal-sized folds due to irregular spacing",
+        "It would let the model train on future data and test on past — leaking information"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Shuffling time series puts future points into training and past points into testing, leaking tomorrow's information into today's model. You must train on the past and test on the future using a time-series split.",
     },
@@ -196,12 +196,12 @@ export const crossValidation: Subject = {
       id: "cv-q5",
       question: "Why keep a final test set separate even when using cross-validation to tune?",
       options: [
-        "To have more training data",
+        "Cross-validation cannot use the full dataset, so a test set provides the remaining samples for training",
+        "The test set is needed to compute precision and recall, which cross_val_score does not report",
         "Because the configuration chosen by CV is slightly optimistic; an untouched test set gives honest final performance",
-        "Cross-validation does not work for tuning",
-        "To speed up training",
+        "Keeping a test set allows you to run more hyperparameter trials without increasing compute time",
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "Tuning on CV folds fits the choice partly to their quirks, making the winning CV score optimistic. A test set touched only once (or nested CV) gives an honest final estimate. You can't select on the data you report on.",
     },
@@ -209,12 +209,12 @@ export const crossValidation: Subject = {
       id: "cv-q6",
       question: "What is leave-one-out cross-validation (LOOCV)?",
       options: [
-        "Leaving out one feature at a time",
-        "k-fold where k equals the number of samples — each point is its own test set",
-        "Training on only one sample",
-        "Removing one fold permanently",
+        "A variant of cross-validation that drops one feature column at a time to assess its importance",
+        "A strategy that trains on a single sample to compute the worst-case generalisation error",
+        "A method that permanently removes the most poorly performing fold from the final score average",
+        "k-fold where k equals the number of samples — each point is its own test set"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "LOOCV sets k = n: each single data point is tested while all others train. It is nearly unbiased but expensive and high-variance, so it is mostly used on very small datasets.",
     },
@@ -222,12 +222,12 @@ export const crossValidation: Subject = {
       id: "cv-q7",
       question: "What does a large spread of scores across folds tell you?",
       options: [
-        "The model is excellent",
-        "The model is unstable or the dataset is small — performance is uncertain",
-        "The folds were computed incorrectly",
-        "Nothing meaningful",
+        "The learning rate is too high, causing different loss values in each fold's training run",
+        "The model generalises very well — consistent performance across different data subsets",
+        "The folds are overlapping, violating the assumption that each test set is independent",
+        "The model is unstable or the dataset is small — performance is uncertain"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "A wide spread across folds signals instability — the model's performance depends heavily on the exact training data, often because the dataset is small. The spread is a useful diagnostic, not just noise.",
     },
@@ -235,12 +235,12 @@ export const crossValidation: Subject = {
       id: "cv-q8",
       question: "When should you use group k-fold cross-validation?",
       options: [
-        "Always, for every dataset",
-        "When there are multiple correlated rows per subject/group that must not be split across train and test",
-        "Only for image data",
-        "When classes are balanced",
+        "Whenever the dataset contains categorical features that need to be balanced across folds",
+        "Whenever the dataset exceeds 10,000 rows, to make training in each fold faster",
+        "When the target variable has more than two classes, requiring multi-label fold assignment",
+        "When there are multiple correlated rows per subject/group that must not be split across train and test"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Group k-fold keeps all rows from one group (e.g. one patient's multiple records) on the same side of the split. Otherwise the same group appears in train and test, leaking information and inflating scores.",
     },
@@ -248,12 +248,12 @@ export const crossValidation: Subject = {
       id: "cv-q9",
       question: "How does increasing k (number of folds) generally affect the estimate?",
       options: [
-        "Lower bias but more compute and often higher variance",
-        "It has no effect at all",
-        "It always reduces accuracy",
-        "It makes the model overfit",
+        "Lower variance and lower bias — always strictly better than a smaller k",
+        "The bias increases because each fold has less training data, making the model underfit more",
+        "Higher bias because the model trains on a smaller fraction of the data in each fold",
+        "Lower bias but more compute and often higher variance"
       ],
-      correctIndex: 0,
+      correctIndex: 3,
       explanation:
         "Larger k means each training set is bigger (closer to using all data), lowering bias, but requires more training runs and the estimates can have higher variance. k = 5 or 10 balances these well.",
     },
@@ -261,10 +261,10 @@ export const crossValidation: Subject = {
       id: "cv-q10",
       question: "What is the ideal way to report cross-validated performance?",
       options: [
-        "The single best fold's score",
+        "The score on the final fold only, because earlier folds were used for hyperparameter tuning",
         "The mean score together with its spread (e.g. 90% ± 2%)",
-        "Only the worst fold",
-        "The training accuracy",
+        "The median fold score, because it is more robust to outlier folds than the mean",
+        "The single best fold's score, because it represents the model's ceiling performance on unseen data"
       ],
       correctIndex: 1,
       explanation:

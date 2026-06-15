@@ -167,12 +167,12 @@ export const supportVectorMachines: Subject = {
       id: "sv-q1",
       question: "What does a Support Vector Machine optimise for?",
       options: [
-        "The line that passes through the most points",
-        "The boundary with the largest margin — the widest gap between the classes",
-        "The shortest possible decision boundary",
-        "The boundary that uses every data point equally",
+        "The boundary that minimises a weighted combination of training error and model complexity via cross-entropy",
+        "The shortest decision boundary measured by the number of support vectors it touches",
+        "The hyperplane that minimises the total number of misclassified training points",
+        "The boundary with the largest margin — the widest gap between the classes"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "An SVM finds the maximum-margin boundary: the one sitting in the middle of the widest empty corridor between classes. The large buffer on both sides tends to generalise well to new data.",
     },
@@ -180,12 +180,12 @@ export const supportVectorMachines: Subject = {
       id: "sv-q2",
       question: "What are the support vectors?",
       options: [
-        "All the points in the training set",
         "The points closest to the boundary, which alone determine where it sits",
-        "The points farthest from the boundary",
-        "A random subset chosen for speed",
+        "A random subsample of the training set used by the kernel approximation to speed up training",
+        "The centroid vectors of each class, used to define the midpoint of the margin",
+        "All training points that are correctly classified — the ones that support the accuracy of the model"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Support vectors are the borderline points on the edge of the margin. Only they determine the boundary — every other point could be moved or removed without changing it, making the model compact.",
     },
@@ -193,12 +193,12 @@ export const supportVectorMachines: Subject = {
       id: "sv-q3",
       question: "What is the essence of the kernel trick?",
       options: [
-        "It deletes irrelevant features",
         "It computes dot products in a high-dimensional space directly, without ever computing the coordinates there",
-        "It speeds up training by sampling data",
-        "It converts the SVM into a decision tree",
+        "It explicitly maps the data to a polynomial feature space and then applies a standard linear SVM on those features",
+        "It reduces the number of support vectors by approximating the kernel matrix with a low-rank factorisation",
+        "It caches pairwise distances during training so they can be reused across gradient descent iterations"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "The kernel trick uses a kernel function to compute dot products in a high- (even infinite-) dimensional space directly from the original points, gaining the power of that space without the cost of visiting it.",
     },
@@ -206,12 +206,12 @@ export const supportVectorMachines: Subject = {
       id: "sv-q4",
       question: "Why must features be scaled before training an SVM?",
       options: [
-        "To reduce the number of support vectors",
+        "The kernel function requires all inputs to lie on the unit sphere, which standardisation enforces",
+        "Scaling reduces the number of support vectors, lowering memory use and speeding up prediction",
         "Because SVMs rely on distances and dot products, so larger-scale features dominate the boundary",
-        "Scaling is optional for SVMs",
-        "To enable probability outputs",
+        "Unscaled features cause the SVM's dual optimisation to converge to a non-unique solution"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "SVMs are distance- and dot-product-based, so unscaled large-range features dominate. Standardising is essential — in the exercise, scaling the wine data lifts accuracy from 0.81 to 1.0.",
     },
@@ -219,12 +219,12 @@ export const supportVectorMachines: Subject = {
       id: "sv-q5",
       question: "In which situation do SVMs tend to excel?",
       options: [
-        "Very large datasets with millions of rows",
+        "Very large datasets with millions of rows and hundreds of features, where kernel speed matters most",
+        "Problems where the output must be a well-calibrated probability rather than a hard class decision",
         "Small-to-medium datasets where features outnumber samples and there is a clear margin",
-        "Problems requiring calibrated probabilities",
-        "Streaming data that changes every second",
+        "Online learning settings where new examples arrive continuously and the model must update in real time"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "SVMs shine in high-dimension, low-sample regimes (e.g. text, gene expression) with a clear margin. On very large datasets their training cost (quadratic to cubic in samples) makes them impractical.",
     },

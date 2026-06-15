@@ -149,12 +149,12 @@ export const kNearestNeighbours: Subject = {
       id: "kn-q1",
       question: "Why is k-NN called a 'lazy' learner?",
       options: [
-        "It often predicts the wrong class",
-        "It does no work at training time, deferring all computation to prediction",
-        "It only uses one feature",
-        "It cannot handle large k",
+        "It converges to the Bayes optimal classifier with few training examples",
+        "It uses only a small subset of the training data, making it computationally inexpensive",
+        "It requires fewer hyperparameter choices than other classifiers, reducing tuning effort",
+        "It does no work at training time, deferring all computation to prediction"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "k-NN simply memorises the training data and does nothing until prediction time, when it computes distances and votes. This makes it 'lazy' — the opposite of models that learn parameters up front.",
     },
@@ -162,12 +162,12 @@ export const kNearestNeighbours: Subject = {
       id: "kn-q2",
       question: "Why must features be scaled before applying k-NN?",
       options: [
-        "To make the model train faster",
+        "Scaling is required so the majority-vote step produces probabilities that sum to one",
+        "Unscaled features cause the k-NN algorithm to converge to a biased local minimum",
         "Because distance sums all features, so a large-range feature dominates and others are ignored",
-        "To reduce the number of classes",
-        "Scaling is not actually necessary for k-NN",
+        "Scaling enables k-NN to handle categorical features by mapping them onto a common numeric range"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "Distance combines every feature, so one measured in large units (e.g. income 0–100,000) swamps one in small units (age 0–100). Without standardising, k-NN effectively ignores the small-range features.",
     },
@@ -175,12 +175,12 @@ export const kNearestNeighbours: Subject = {
       id: "kn-q3",
       question: "What happens to the decision boundary as k increases?",
       options: [
-        "It becomes jagged and fits noise",
-        "It becomes smoother, with higher bias and lower variance",
-        "It disappears entirely",
-        "It always improves accuracy",
+        "The boundary stays the same but prediction speed increases as fewer neighbours need to be queried",
+        "It becomes more complex and jagged, increasing variance by considering more neighbours",
+        "It converges to the globally optimal Bayes decision boundary for the training distribution",
+        "It becomes smoother, with higher bias and lower variance"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Larger k averages over more neighbours, smoothing the boundary (higher bias, lower variance). Too large washes out real structure; too small (k=1) overfits noise. k is a direct dial on the bias–variance tradeoff.",
     },
@@ -188,12 +188,12 @@ export const kNearestNeighbours: Subject = {
       id: "kn-q4",
       question: "What is the 'curse of dimensionality' for k-NN?",
       options: [
-        "Too many classes confuse the vote",
-        "In high dimensions all points become roughly equidistant, so 'nearest' loses meaning",
-        "The algorithm runs out of memory",
-        "k must equal the number of dimensions",
+        "With more features the k-NN vote requires more classes, causing ties that degrade accuracy",
+        "Adding dimensions increases k proportionally, forcing the model to average over more irrelevant points",
+        "High-dimensional data causes the distance computation to overflow floating-point precision",
+        "In high dimensions all points become roughly equidistant, so 'nearest' loses meaning"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "As dimensions grow, space becomes vast and sparse, and distances between points converge — nearest and farthest become nearly indistinguishable. Distance-based methods like k-NN degrade badly as a result.",
     },
@@ -201,12 +201,12 @@ export const kNearestNeighbours: Subject = {
       id: "kn-q5",
       question: "For a two-class problem, why choose an odd value of k?",
       options: [
-        "Odd numbers train faster",
+        "Odd k guarantees that the nearest neighbour from each class is always included in the vote",
+        "Odd k values reduce computational cost by avoiding the need to sort the full distance list",
         "To prevent tied votes between the two classes",
-        "Even k is mathematically invalid",
-        "It reduces the curse of dimensionality",
+        "Scikit-learn's KNeighborsClassifier requires an odd k to compute probability estimates correctly"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "With two classes, an even k can split evenly and tie. An odd k guarantees a majority, so there is always a clear winner. A common starting point is k = √n, tuned by cross-validation.",
     },

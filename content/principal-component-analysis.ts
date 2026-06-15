@@ -250,12 +250,12 @@ export const principalComponentAnalysis: Subject = {
       question:
         "The first principal component is the direction that:",
       options: [
-        "Maximises the sum of squared distances between all pairs of projected points",
+        "Minimises the cross-entropy between the projected distribution and a standard normal",
+        "Minimises the pairwise Euclidean distances between all projected data points",
         "Points along the axis with the largest eigenvalue of the covariance matrix",
-        "Minimises the reconstruction error from all K components simultaneously",
-        "Maximises the correlation between the component scores and the target variable",
+        "Maximises the correlation between the component scores and the original feature means"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "The first PC is the eigenvector of the covariance matrix corresponding to its largest eigenvalue. This direction has the property that projecting the data onto it captures maximum variance — equivalently, it minimises the mean squared reconstruction error from a single component.",
     },
@@ -264,12 +264,12 @@ export const principalComponentAnalysis: Subject = {
       question:
         "Why must you standardise features before applying PCA in most situations?",
       options: [
-        "PCA requires all features to be in the range [0, 1]",
+        "Without standardisation, PCA produces more components than the number of original features",
+        "Standardisation converts the covariance matrix into a correlation matrix, which is required for SVD to converge",
         "Features with larger numeric scale have larger variance and will dominate the components even if they carry no more information",
-        "The SVD algorithm used internally only works on standardised data",
-        "Standardisation ensures the covariance matrix is positive definite",
+        "PCA's eigenvectors become non-orthogonal when the feature magnitudes differ, violating the orthogonality guarantee"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "PCA is sensitive to scale because it seeks directions of maximum variance. A feature measured in thousands will have large variance simply due to its units, causing it to dominate the first PC regardless of its actual information content. Standardising makes the variance comparison fair.",
     },
@@ -278,12 +278,12 @@ export const principalComponentAnalysis: Subject = {
       question:
         "You fit PCA on a training set and want to apply it to a test set. Which procedure is correct?",
       options: [
-        "Fit PCA on the full dataset (train + test) to capture all variance, then split",
-        "Fit a separate PCA on the test set to get the most accurate projection",
+        "Fit PCA jointly on train and test to ensure the components capture the full data distribution",
         "Use the components learned from the training set to transform the test set without refitting",
-        "Re-centre and re-scale the test set using its own mean and variance before projecting",
+        "Fit a new PCA on the test set independently so the projection is aligned with test-set variance",
+        "Subtract the test set's mean from each test point before projecting onto the training-set components"
       ],
-      correctIndex: 2,
+      correctIndex: 1,
       explanation:
         "PCA must be fit only on training data. The learned components (eigenvectors) and the training mean/standard deviation are then applied to the test set unchanged. Fitting on the combined dataset or re-fitting on the test set causes data leakage.",
     },
@@ -292,12 +292,12 @@ export const principalComponentAnalysis: Subject = {
       question:
         "A dataset has 100 features. After PCA, the first 5 components explain 93% of the total variance. What is the most useful interpretation of this finding?",
       options: [
-        "The other 95 components are useless and can always be discarded",
+        "The five retained components are orthogonal to the noise in the data, so prediction error will be exactly 7%",
+        "A model trained on all 100 features will always be outperformed by one trained on only 5 PCA components",
         "The data is intrinsically 5-dimensional; most features are highly correlated",
-        "The model trained on 5 PCs will always outperform one trained on all 100 features",
-        "The variance of the original dataset was 93 units",
+        "The remaining 95 components carry no predictive signal and must be discarded before modelling"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "93% of variance in 5 components means the 100 raw features are highly correlated — the data lives near a 5-dimensional subspace. This is called low intrinsic dimensionality. It doesn't guarantee a supervised model will perform better (the remaining 7% might contain predictive signal), but it strongly motivates using fewer features for visualisation and exploration.",
     },
@@ -306,12 +306,12 @@ export const principalComponentAnalysis: Subject = {
       question:
         "Which of the following tasks is PCA NOT well-suited for?",
       options: [
-        "Visualising a 50-dimensional dataset in 2D",
-        "Removing correlated features before linear regression",
         "Classifying images while preserving individual pixel interpretability",
-        "Compressing a dataset to reduce storage requirements",
+        "Decorrelating highly correlated predictors before feeding them into a linear regression",
+        "Compressing a high-dimensional dataset to reduce memory usage during model training",
+        "Reducing 50-dimensional data to 2D for scatter-plot visualisation of cluster structure"
       ],
-      correctIndex: 2,
+      correctIndex: 0,
       explanation:
         "PCA projects data onto new axes that are linear combinations of all original features. The resulting components have no simple interpretation in terms of individual original features. If feature interpretability is critical (e.g. 'which original pixels matter?'), feature selection methods such as Lasso are more appropriate.",
     },

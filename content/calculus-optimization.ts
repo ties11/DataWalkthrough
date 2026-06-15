@@ -181,12 +181,12 @@ export const calculusOptimization: Subject = {
       id: "co-q1",
       question: "What does the derivative of a function at a point tell you?",
       options: [
-        "The value of the function there",
-        "The slope — how fast the output changes, and thus which way is uphill or downhill",
-        "The number of minima the function has",
-        "Whether the function is positive",
+        "The value of the function at the nearest local minimum",
+        "The second-order curvature, indicating whether it is a minimum or maximum",
+        "The total area under the function curve up to that point",
+        "The slope — how fast the output changes, and thus which way is uphill or downhill"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "The derivative is the slope. Its sign tells you whether the function rises or falls, and to reduce a value you move opposite the derivative — downhill. This is the core of gradient descent.",
     },
@@ -194,12 +194,12 @@ export const calculusOptimization: Subject = {
       id: "co-q2",
       question: "Backpropagation in neural networks is fundamentally an application of what?",
       options: [
-        "Matrix inversion",
+        "Gaussian elimination — solving the system of linear equations formed by the network weights",
+        "Bayes' theorem — updating weight beliefs given the observed training errors",
         "The chain rule, applied backwards through the network's layers",
-        "Bayes' theorem",
-        "The Central Limit Theorem",
+        "The Central Limit Theorem — averaging gradients over many samples for stability"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "A network is a composition of many functions. Backpropagation computes the gradient by applying the chain rule systematically from output to input — multiplying layer derivatives together.",
     },
@@ -207,12 +207,12 @@ export const calculusOptimization: Subject = {
       id: "co-q3",
       question: "What does the gradient of a loss function point toward?",
       options: [
-        "The global minimum directly",
-        "The direction of steepest ascent — so we step opposite it to minimise",
-        "The largest parameter",
-        "A random direction",
+        "The parameter with the largest absolute value in the current weight vector",
+        "The nearest local minimum — gradient descent follows it directly to the optimum",
+        "The direction of zero curvature, indicating a saddle point",
+        "The direction of steepest ascent — so we step opposite it to minimise"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "The gradient points uphill (steepest ascent). To minimise loss, gradient descent steps in the opposite direction. This single fact drives the training of most models.",
     },
@@ -220,12 +220,12 @@ export const calculusOptimization: Subject = {
       id: "co-q4",
       question: "What happens if the learning rate is set too high?",
       options: [
-        "Training becomes very slow but always succeeds",
-        "Steps overshoot the minimum; training may bounce around or diverge",
-        "The model uses less memory",
-        "The gradient becomes zero",
+        "The gradient vanishes because each step erases the previous gradient signal",
+        "Training converges faster because each update makes a larger improvement",
+        "The model underfits because the updates are too coarse to find fine structure",
+        "Steps overshoot the minimum; training may bounce around or diverge"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Too large a learning rate causes steps that leap past the valley, leading to oscillation or divergence to infinity. Too small crawls. Tuning it is among the first practical skills you develop.",
     },
@@ -234,10 +234,10 @@ export const calculusOptimization: Subject = {
       question:
         "Why is the non-convex loss of a neural network usually not a fatal problem in practice?",
       options: [
-        "Neural networks are actually convex",
+        "Non-convex losses only occur in shallow networks; deep networks are convex",
         "For large networks, most local minima are nearly as good as the global minimum",
-        "Gradient descent always finds the global minimum anyway",
-        "Non-convex functions have no minima",
+        "Gradient descent escapes all local minima due to its stochastic step noise",
+        "Batch normalisation converts the loss landscape to a convex surface during training"
       ],
       correctIndex: 1,
       explanation:

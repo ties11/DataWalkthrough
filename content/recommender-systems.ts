@@ -194,12 +194,12 @@ export const recommenderSystems: Subject = {
       id: "rs-q1",
       question: "What is the 'cold-start' problem in recommender systems?",
       options: [
-        "The model takes too long to train on large datasets",
+        "Collaborative filtering fails when users rate items only once and cannot be re-surveyed",
+        "The latent factor model requires many epochs to warm up and converge on large rating matrices",
         "New users or items have no interaction history, making recommendations difficult",
-        "The rating matrix becomes too dense as more data is added",
-        "Collaborative filtering requires item features that are often unavailable",
+        "The rating matrix becomes increasingly dense as users rate more items, slowing down factorisation"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "Cold-start affects new users (no preferences known) and new items (no ratings). Content-based methods help for new items; popularity defaults or onboarding questionnaires help for new users.",
     },
@@ -207,10 +207,10 @@ export const recommenderSystems: Subject = {
       id: "rs-q2",
       question: "In matrix factorisation, the predicted rating is computed as:",
       options: [
-        "The Euclidean distance between the user and item vectors",
+        "The L2 norm of the difference between the user latent vector and the item latent vector",
         "The dot product of the user latent vector and the item latent vector",
-        "The cosine similarity between the user and item vectors",
-        "The sum of all latent factors for the user",
+        "The cosine similarity between the user and item vectors, normalised to the range [1, 5]",
+        "A weighted average of all other users' ratings for that item, weighted by their profile similarity",
       ],
       correctIndex: 1,
       explanation:
@@ -220,12 +220,12 @@ export const recommenderSystems: Subject = {
       id: "rs-q3",
       question: "Why is item-based CF generally preferred over user-based CF for large-scale systems?",
       options: [
-        "Items have more features than users, making similarity more accurate",
+        "The item catalogue typically has richer feature metadata than user profiles, enabling more accurate similarity",
+        "User-based CF only works with explicit star ratings, while item-based CF handles implicit signals like clicks",
         "Item similarities are more stable over time and cheaper to recompute",
-        "User-based CF requires explicit ratings while item-based works on implicit data",
-        "Item-based CF doesn't require a similarity metric",
+        "Item-based CF avoids the cold-start problem entirely because items always have purchase histories"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "User tastes shift frequently, requiring constant recomputation. Item catalogues change much more slowly, so precomputed item–item similarities stay valid longer and can be cached.",
     },
@@ -233,12 +233,12 @@ export const recommenderSystems: Subject = {
       id: "rs-q4",
       question: "What does Precision@K measure in ranking evaluation?",
       options: [
-        "The average rating error across all items in the top-K list",
-        "The fraction of items in the top-K recommendations that are actually relevant",
-        "The fraction of all relevant items that appear in the top-K list",
-        "The ranking quality weighted by position",
+        "The fraction of all relevant items in the catalogue that appear somewhere in the top-K list",
+        "The average position of the first relevant item within the top-K ranked list",
+        "The mean absolute error between predicted ratings and true ratings for the top-K items",
+        "The fraction of items in the top-K recommendations that are actually relevant"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Precision@K = (number of relevant items in top-K) / K. It answers: 'of the K things I showed the user, how many were actually good?' Recall@K asks the complementary question.",
     },
@@ -246,12 +246,12 @@ export const recommenderSystems: Subject = {
       id: "rs-q5",
       question: "What is the main weakness of content-based filtering?",
       options: [
-        "It requires many users to work correctly",
-        "It cannot handle implicit feedback",
-        "It creates a filter bubble — only recommending similar things to what the user already knows",
-        "It requires matrix factorisation to compute item features",
+        "It cannot incorporate implicit feedback such as clicks and dwell time without explicit rating labels",
+        "It requires a large user base to compute reliable item-feature similarity scores",
+        "It suffers from cold-start for all items because content features are rarely available at launch time",
+        "It creates a filter bubble — only recommending similar things to what the user already knows"
       ],
-      correctIndex: 2,
+      correctIndex: 3,
       explanation:
         "Content-based systems recommend items similar to past likes, leading to a filter bubble: users never discover items in genres or styles they haven't tried.",
     },

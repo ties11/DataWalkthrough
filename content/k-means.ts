@@ -256,12 +256,12 @@ export const kMeans: Subject = {
       question:
         "Which of the following best describes the K-means objective function?",
       options: [
-        "Maximise the distance between cluster centroids",
         "Minimise the total within-cluster sum of squared distances to centroids",
-        "Minimise the number of clusters needed to explain the data",
-        "Maximise the silhouette score across all points",
+        "Minimise the cross-entropy between the cluster assignment distribution and a uniform prior",
+        "Maximise the between-cluster variance while keeping within-cluster variance constant",
+        "Minimise the number of clusters by merging groups until a stopping criterion is met"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "K-means minimises inertia — the sum of squared distances from each point to its assigned centroid. Minimising this pulls each centroid to the mean of its cluster, which is why the update step replaces each centroid with the cluster mean.",
     },
@@ -270,12 +270,12 @@ export const kMeans: Subject = {
       question:
         "You run K-means twice on the same dataset with the same K but different random seeds and get different clusterings. What is the most likely explanation?",
       options: [
-        "K-means is a stochastic algorithm that never converges",
         "K-means converged to different local minima due to different initialisations",
-        "The data has no true clusters",
-        "The algorithm made an arithmetic error",
+        "K-means is non-deterministic because the assignment step uses random neighbourhood sampling",
+        "The distance metric is non-symmetric, so ordering of centroid updates affects the final result",
+        "K-means randomly drops some data points in each run to speed up computation"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "K-means is guaranteed to converge, but only to a local minimum of the objective. Different starting centroids can lead to different local minima, which is why practitioners run K-means many times and keep the best result.",
     },
@@ -284,12 +284,12 @@ export const kMeans: Subject = {
       question:
         "Why must you standardise features before applying K-means?",
       options: [
-        "K-means cannot handle negative numbers",
         "The algorithm uses Euclidean distance, so features on larger scales dominate the assignment step",
-        "Standardisation speeds up convergence by a factor of K",
-        "K-means requires all features to have exactly unit variance",
+        "K-means requires all features to sum to zero so that centroids initialise at the origin",
+        "Standardisation converts the objective function from non-convex to convex, guaranteeing a global minimum",
+        "Standardisation converts categorical features to numeric values so the distance formula can be applied"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "K-means uses Euclidean distance to assign points to centroids. A feature measured in thousands (e.g. salary) will contribute far more to the distance than one measured in single digits (e.g. age), causing the first feature to dominate the clustering. Standardising all features to comparable scales prevents this.",
     },
@@ -298,12 +298,12 @@ export const kMeans: Subject = {
       question:
         "A dataset contains two crescent-shaped clusters that interlock. Which statement about K-means is correct?",
       options: [
-        "K-means will find the crescents perfectly with K=2",
-        "K-means will fail because its Voronoi boundaries are linear half-spaces that cannot separate non-convex shapes",
-        "K-means will fail because it requires K ≥ 3",
-        "K-means will succeed if you standardise the features first",
+        "K-means will correctly separate the crescents after enough random restarts find the right initial centroids",
+        "K-means will succeed if K is increased to match the number of interlock points along each crescent",
+        "K-means will find the crescents accurately as long as K=2 and the features are standardised",
+        "K-means will fail because its Voronoi boundaries are linear half-spaces that cannot separate non-convex shapes"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "K-means partitions space using Voronoi cells — each region is closer to one centroid than any other. These boundaries are linear (straight lines in 2D), so K-means can only find convex clusters. Non-convex shapes like crescents require density-based methods such as DBSCAN.",
     },
@@ -312,12 +312,12 @@ export const kMeans: Subject = {
       question:
         "The silhouette score for a point is close to −1. What does this indicate?",
       options: [
-        "The point is very well-matched to its cluster",
-        "The point lies exactly on the boundary between two clusters",
         "The point may have been assigned to the wrong cluster",
-        "The cluster containing this point has very high inertia",
+        "The point is tightly clustered — it is much closer to its centroid than to any other centroid",
+        "The entire cluster has low inertia, which causes its member silhouettes to be negative",
+        "The point sits precisely on the Voronoi boundary between two adjacent clusters"
       ],
-      correctIndex: 2,
+      correctIndex: 0,
       explanation:
         "A silhouette score near −1 means the average distance to points in the nearest other cluster is much smaller than the average distance to points in the point's own cluster — suggesting the point actually fits the neighbouring cluster better. A negative silhouette is a red flag for misclassification.",
     },

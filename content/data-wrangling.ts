@@ -176,12 +176,12 @@ export const dataWrangling: Subject = {
       id: "dw-q1",
       question: "Why is data wrangling so emphasised in real-world data science?",
       options: [
-        "It is the most mathematically advanced part",
-        "Practitioners spend roughly 80% of their time on it, and clean data beats clever models",
-        "It is the only part that requires no code",
-        "Models cannot run without it being skipped",
+        "Regulators require documented cleaning steps before any ML model can be deployed",
+        "It requires the most statistical expertise, making it the highest-leverage skill to develop",
+        "Automated feature engineering tools cannot handle raw data, so wrangling must always be manual",
+        "Practitioners spend roughly 80% of their time on it, and clean data beats clever models"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Cleaning and preparing data consumes most of a practitioner's time, and the quality of the data usually matters more than the sophistication of the model — garbage in, garbage out.",
     },
@@ -189,12 +189,12 @@ export const dataWrangling: Subject = {
       id: "dw-q2",
       question: "Which describes tidy data?",
       options: [
-        "Data with no missing values",
         "Each variable a column, each observation a row, each unit type a table",
-        "Data sorted alphabetically",
-        "Data stored in a single column",
+        "Data stored in wide format with one row per subject and one column per time point",
+        "Data that has been normalised to zero mean and unit variance across all features",
+        "Data where all missing values have been imputed and all outliers have been removed"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Wickham's tidy data has one variable per column, one observation per row, and one observational unit type per table. This standard shape is what downstream tools expect.",
     },
@@ -202,12 +202,12 @@ export const dataWrangling: Subject = {
       id: "dw-q3",
       question: "Before dropping rows with missing income, what should you consider?",
       options: [
-        "Nothing — always drop missing values",
-        "Why the data is missing; if high earners skip the question, dropping biases the data",
-        "Whether the file is too large",
-        "The colour of the spreadsheet",
+        "Whether the missing values follow a Gaussian distribution, which determines the best imputation method",
+        "Whether the remaining rows after dropping exceed the minimum sample size for the chosen model",
+        "Whether the median imputation strategy is supported by the pandas version in use",
+        "Why the data is missing; if high earners skip the question, dropping biases the data"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Missingness is often informative. If certain groups are more likely to have missing values, dropping those rows biases your dataset. Ask why data is missing before deleting or imputing.",
     },
@@ -215,12 +215,12 @@ export const dataWrangling: Subject = {
       id: "dw-q4",
       question: "What does the split–apply–combine (group-by) pattern accomplish?",
       options: [
-        "It splits files into smaller files",
-        "It groups rows by category, applies a calculation per group, and combines the results",
-        "It removes all duplicate columns",
-        "It converts text to numbers",
+        "It decomposes a nested JSON column into separate flat columns for each key",
+        "It merges two DataFrames by finding rows with matching keys in a shared column",
+        "It partitions a DataFrame into train, validation, and test sets for cross-validated modelling",
+        "It groups rows by category, applies a calculation per group, and combines the results"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Group-by answers questions like 'average revenue per region' by splitting data into groups, computing a summary for each, and recombining. It is one of the most-used operations in data work.",
     },
@@ -229,10 +229,10 @@ export const dataWrangling: Subject = {
       question:
         "Why must you compute imputation/scaling statistics on the training set only, not the whole dataset?",
       options: [
-        "It runs faster that way",
+        "The test set must remain unscaled so the model can generate predictions on the original feature scale",
         "Using the whole dataset leaks test-set information into training, inflating measured accuracy",
-        "The test set has no missing values",
-        "Pandas requires it",
+        "Imputation statistics computed on training data are more accurate than those from the full dataset",
+        "Computing statistics over all data causes numerical overflow for large datasets in pandas"
       ],
       correctIndex: 1,
       explanation:

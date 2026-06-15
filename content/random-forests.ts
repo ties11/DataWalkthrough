@@ -245,12 +245,12 @@ export const randomForests: Subject = {
       question:
         "Why does a random forest grow each individual tree deep and unpruned, instead of carefully pruning it?",
       options: [
-        "Pruning is computationally impossible for more than a few trees",
-        "Deep trees have low bias; averaging across many of them removes the resulting high variance",
-        "Unpruned trees are more interpretable than pruned ones",
-        "Pruning would make all the trees identical",
+        "Pruning is computationally infeasible when growing hundreds of trees simultaneously in parallel",
+        "Without pruning each tree overfits equally, which cancels out when the predictions are averaged",
+        "Pruned trees lose the ability to use the bootstrap sample, preventing accurate OOB error estimation",
+        "Deep trees have low bias; averaging across many of them removes the resulting high variance"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Each tree is deliberately low-bias / high-variance. A single such tree overfits, but averaging many of them cancels the variance while keeping the low bias. Pruning would raise bias — the wrong trade for an ensemble.",
     },
@@ -259,12 +259,12 @@ export const randomForests: Subject = {
       question:
         "From the ESL variance formula ρσ² + (1−ρ)/B · σ², what limits how much accuracy you gain by adding more trees?",
       options: [
-        "Nothing — variance always reaches zero as B grows",
-        "The bias term, which grows with B",
         "The correlation ρ between trees, since ρσ² does not shrink as B grows",
-        "The number of features p",
+        "Nothing — adding more trees always reduces variance toward zero regardless of ρ",
+        "The individual tree bias σ², which increases as B grows because the bootstrap samples overlap more",
+        "The number of features p — when p is small there are not enough split options to create diverse trees"
       ],
-      correctIndex: 2,
+      correctIndex: 0,
       explanation:
         "As B → ∞ the second term vanishes but ρσ² remains. Adding trees cannot push variance below ρσ². This is exactly why random forests decorrelate trees by restricting features per split.",
     },
@@ -273,12 +273,12 @@ export const randomForests: Subject = {
       question:
         "What is the key difference between plain bagging and a random forest?",
       options: [
-        "Bagging uses the bootstrap; random forests do not resample the data",
         "Random forests consider only a random subset of m features at each split",
-        "Bagging averages trees; random forests use a single best tree",
-        "Random forests prune their trees while bagging does not",
+        "Plain bagging uses bootstrap resampling of rows; random forests resample rows and columns jointly",
+        "Bagging trains trees sequentially so each corrects the last, while random forests train in parallel",
+        "Random forests grow deeper trees than bagging, which uses a fixed maximum depth for interpretability"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Both use bootstrap resampling. The defining addition of the random forest is restricting each split to a random subset of m features, which decorrelates the trees and lowers ρ.",
     },
@@ -286,12 +286,12 @@ export const randomForests: Subject = {
       id: "rf-q4",
       question: "What does the out-of-bag (OOB) error estimate provide?",
       options: [
-        "A measure of how many trees are in the forest",
         "A nearly-unbiased test-error estimate using, for each row, only the trees that did not train on it",
-        "The training error of the deepest tree",
-        "The correlation ρ between trees",
+        "The average training error across all trees, weighted by each tree's depth",
+        "The fraction of trees that agree on the majority class for each training example",
+        "A regularisation penalty that penalises forests for having too many trees relative to the dataset size"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "Each bootstrap sample omits ~1/3 of rows. Predicting each row with only the trees that never saw it yields a free, nearly-unbiased estimate of generalisation error — no separate validation set needed.",
     },
@@ -300,12 +300,12 @@ export const randomForests: Subject = {
       question:
         "Which task is a random forest LEAST suited to, by design?",
       options: [
-        "Classifying tabular data with mixed numeric and categorical features",
         "Predicting a target that lies outside the range seen in training (extrapolation)",
-        "Modelling non-linear interactions between features",
-        "Producing a quick, robust baseline with little tuning",
+        "Capturing non-linear interactions among features without explicit feature engineering",
+        "Classifying tabular data with a mixture of numeric, ordinal, and nominal features",
+        "Generating a strong baseline model quickly with minimal hyperparameter tuning"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "A forest predicts the mean of a leaf, so it can never output a value beyond the training range. Extrapolation is a structural limitation — use a model with a functional form instead.",
     },

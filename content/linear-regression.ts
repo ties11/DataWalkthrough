@@ -228,10 +228,10 @@ export const linearRegression: Subject = {
       question:
         "What quantity does Ordinary Least Squares minimise to find the best-fit line?",
       options: [
-        "The sum of the absolute residuals",
+        "The mean absolute error between the predicted and observed values",
         "The sum of the squared residuals (RSS)",
-        "The number of points above the line",
-        "The largest single residual",
+        "The negative log-likelihood of the target values under a Laplace prior",
+        "The maximum single residual across all training examples"
       ],
       correctIndex: 1,
       explanation:
@@ -241,12 +241,12 @@ export const linearRegression: Subject = {
       id: "lr-q2",
       question: "Why does least squares square the residuals rather than take absolute values?",
       options: [
-        "Squaring is the only way to make errors positive",
-        "It makes the loss smooth/differentiable and penalises large errors more, enabling a closed-form solution",
-        "Absolute values cannot be computed by a computer",
-        "It makes the model robust to outliers",
+        "Absolute-value loss would make the model resistant to noise but square loss is needed for robustness to outliers",
+        "Squaring makes all residuals positive, whereas absolute values can be negative for certain implementations",
+        "Squaring ensures the residuals follow a normal distribution, which is required for the t-test on coefficients",
+        "It makes the loss smooth/differentiable and penalises large errors more, enabling a closed-form solution"
       ],
-      correctIndex: 1,
+      correctIndex: 3,
       explanation:
         "Squaring yields a smooth, differentiable loss with an exact algebraic minimum, and weights large errors heavily. The cost is sensitivity to outliers — the opposite of robust.",
     },
@@ -255,12 +255,12 @@ export const linearRegression: Subject = {
       question:
         "The normal equation β̂ = (XᵀX)⁻¹Xᵀy can fail to compute. What is a common cause?",
       options: [
-        "The dataset has too few features",
         "Highly correlated predictors (multicollinearity) make XᵀX singular or near-singular",
-        "The learning rate is set too high",
-        "The target variable is continuous",
+        "Using too many training iterations causes numerical overflow in the matrix product XᵀX",
+        "The normal equation only works for classification targets, not continuous regression targets",
+        "The dataset has an odd number of rows, which breaks the symmetry that matrix inversion requires"
       ],
-      correctIndex: 1,
+      correctIndex: 0,
       explanation:
         "When predictors are collinear (or there are more features than observations), XᵀX cannot be stably inverted. Libraries use QR/SVD decompositions, and for huge data we use gradient descent instead.",
     },
@@ -268,12 +268,12 @@ export const linearRegression: Subject = {
       id: "lr-q4",
       question: "What does an R² of 0.45 tell you?",
       options: [
-        "The model is 45% likely to be correct",
+        "The model makes 45% fewer errors than a model trained with no features",
+        "The correlation between the predicted and actual values is 0.45",
         "The model explains about 45% of the variance in the target",
-        "45% of the residuals are zero",
-        "The slope coefficient equals 0.45",
+        "45% of predictions fall within one standard deviation of the observed values"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "R² is the fraction of the target's variance explained by the model. 0.45 means the model accounts for about 45% of the variation; the rest is unexplained. It does not by itself confirm the model is valid.",
     },
@@ -282,12 +282,12 @@ export const linearRegression: Subject = {
       question:
         "A regression has a high R² but its residual plot shows a clear U-shaped curve. What does this most likely indicate?",
       options: [
-        "The model is excellent and ready to deploy",
+        "The high R² confirms the model fits well; the U-shape is an artefact of the plotting scale",
+        "The target variable has high variance, which always produces U-shaped residual patterns",
         "The linearity assumption is violated — the true relationship is non-linear",
-        "There are too few data points",
-        "The target needs to be squared",
+        "The model is overfitting — the curvature arises from training on too few data points"
       ],
-      correctIndex: 1,
+      correctIndex: 2,
       explanation:
         "A pattern in the residuals signals a mis-specified model. A U-shape means a linear fit is missing curvature — consider polynomial terms or a non-linear model, regardless of how high R² appears.",
     },
