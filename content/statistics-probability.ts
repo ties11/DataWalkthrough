@@ -276,7 +276,7 @@ export const statisticsProbability: Subject = {
           prompt:
             "Given data = [2, 4, 4, 4, 5, 5, 7, 9], compute and print its mean using numpy. (Expected: 5.0)",
           starterCode:
-            "import numpy as np\ndata = [2, 4, 4, 4, 5, 5, 7, 9]\n\n# print the mean\n",
+            "import numpy as np\ndata = [2, 4, 4, 4, 5, 5, 7, 9]\n\n# YOUR CODE HERE\n",
           expectedStdout: "5.0",
           hints: ["np.mean(data) returns the average.", "print(np.mean(data))"],
           solution:
@@ -288,7 +288,7 @@ export const statisticsProbability: Subject = {
           prompt:
             "Print the standard deviation of the same data, rounded to 2 decimals. (Expected: 2.0)",
           starterCode:
-            "# print round(float(np.std(data)), 2)\n",
+            "# YOUR CODE HERE\n",
           expectedStdout: "2.0",
           hints: [
             "np.std(data) computes the standard deviation.",
@@ -302,7 +302,7 @@ export const statisticsProbability: Subject = {
           prompt:
             "Apply Bayes' theorem: disease prevalence 1% (0.01), test sensitivity 99% (0.99), specificity 95% (0.95). Compute P(disease | positive test) and print it rounded to 3 decimals. (Expected: 0.167)",
           starterCode:
-            "p_disease = 0.01\nsensitivity = 0.99   # P(positive | disease)\nspecificity = 0.95   # P(negative | no disease)\n\n# P(positive) = sensitivity*p_disease + (1-specificity)*(1-p_disease)\n# posterior = sensitivity*p_disease / P(positive)\n# print posterior rounded to 3 decimals\n",
+            "p_disease = 0.01\nsensitivity = 0.99   # P(positive | disease)\nspecificity = 0.95   # P(negative | no disease)\n\n# YOUR CODE HERE\n",
           expectedStdout: "0.167",
           hints: [
             "P(positive) = sensitivity*p_disease + (1-specificity)*(1-p_disease)",

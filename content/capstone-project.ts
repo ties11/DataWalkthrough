@@ -234,8 +234,7 @@ import pandas as pd
 df = sns.load_dataset("titanic")
 df = df.rename(columns={"sibsp": "SibSp", "parch": "Parch"})
 
-# TODO: create FamilySize, IsAlone, Title
-# Title: use df["who"].map({"man": "Mr", "woman": "Mrs", "child": "Master"}).fillna("Rare")
+# YOUR CODE HERE: create FamilySize, IsAlone, and Title columns
 
 print("Title value counts:")
 print(df["Title"].value_counts())
@@ -289,9 +288,9 @@ y = df["survived"]
 num_features = ["age", "fare", "FamilySize"]
 cat_features = ["sex", "embarked", "Title"]
 
-# TODO: build num_transformer, cat_transformer, ColumnTransformer, Pipeline
-# scores = cross_val_score(pipeline, X, y, cv=5, scoring="accuracy")
-# print(f"CV Accuracy: {scores.mean():.3f} +/- {scores.std():.3f}")`,
+# YOUR CODE HERE
+# Build num_transformer, cat_transformer, ColumnTransformer, and a Pipeline.
+# Then run 5-fold CV and print: f"CV Accuracy: {scores.mean():.3f} +/- {scores.std():.3f}"`,
           solution: `import seaborn as sns
 import pandas as pd
 from sklearn.pipeline import Pipeline

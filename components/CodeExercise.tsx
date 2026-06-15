@@ -5,6 +5,7 @@ import Editor from "@monaco-editor/react";
 import { Subject, CodeExercise as Ex, ExercisePart } from "@/content/types";
 import { runPython } from "@/lib/pyodide";
 import { getProgress, markCompleted, updateMastery } from "@/lib/progress";
+import CodingCheatSheet from "./CodingCheatSheet";
 
 function normalise(s: string) {
   return s
@@ -266,6 +267,7 @@ export default function CodeExercises({
           <p className="quiz-score-line">
             {doneParts} of {totalParts} steps solved
           </p>
+          <CodingCheatSheet />
           {body}
         </div>
       </main>

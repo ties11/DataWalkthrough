@@ -243,7 +243,7 @@ export const supportVectorMachines: Subject = {
           prompt:
             "Load the wine dataset with load_wine(return_X_y=True), split with test_size=0.2 and random_state=42, and print the number of training and test samples space-separated. (Expected: 142 36)",
           starterCode:
-            "from sklearn.datasets import load_wine\nfrom sklearn.model_selection import train_test_split\n\nX, y = load_wine(return_X_y=True)\n# split and print len(X_train), len(X_test)\n",
+            "from sklearn.datasets import load_wine\nfrom sklearn.model_selection import train_test_split\n\nX, y = load_wine(return_X_y=True)\n# YOUR CODE HERE\n",
           expectedStdout: "142 36",
           hints: [
             "train_test_split(X, y, test_size=0.2, random_state=42)",
@@ -258,7 +258,7 @@ export const supportVectorMachines: Subject = {
           prompt:
             "Train SVC(kernel='rbf', random_state=42) on the UNSCALED data, predict, and print the accuracy rounded to 2 decimals. Note how mediocre it is. (Expected: 0.81)",
           starterCode:
-            "from sklearn.svm import SVC\nfrom sklearn.metrics import accuracy_score\n\n# fit on UNSCALED X_train, predict, print round(accuracy, 2)\n",
+            "from sklearn.svm import SVC\nfrom sklearn.metrics import accuracy_score\n\n# YOUR CODE HERE\n",
           expectedStdout: "0.81",
           hints: [
             "svm = SVC(kernel='rbf', random_state=42); svm.fit(X_train, y_train)",
@@ -274,7 +274,7 @@ export const supportVectorMachines: Subject = {
           prompt:
             "Now standardise with StandardScaler (fit on train, transform both), retrain the same SVC on the SCALED data, and print the new accuracy rounded to 2 decimals. Watch it jump. (Expected: 1.0)",
           starterCode:
-            "from sklearn.preprocessing import StandardScaler\n\n# scaler = StandardScaler(); fit_transform train, transform test\n# train SVC on scaled data, predict, print round(accuracy, 2)\n",
+            "from sklearn.preprocessing import StandardScaler\n\n# YOUR CODE HERE\n",
           expectedStdout: "1.0",
           hints: [
             "scaler = StandardScaler(); X_train_s = scaler.fit_transform(X_train); X_test_s = scaler.transform(X_test)",

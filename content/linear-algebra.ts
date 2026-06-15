@@ -261,7 +261,7 @@ export const linearAlgebra: Subject = {
           prompt:
             "Given a = [1, 2, 3] and b = [4, 5, 6] as numpy arrays, compute and print their dot product as an integer. (Expected: 32)",
           starterCode:
-            "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\n\n# print int(np.dot(a, b))\n",
+            "import numpy as np\na = np.array([1, 2, 3])\nb = np.array([4, 5, 6])\n\n# YOUR CODE HERE\n",
           expectedStdout: "32",
           hints: ["np.dot(a, b) multiplies corresponding entries and sums.", "print(int(np.dot(a, b)))"],
           solution:
@@ -273,7 +273,7 @@ export const linearAlgebra: Subject = {
           prompt:
             "Create matrix A = [[1, 2], [3, 4]]. Multiply A by itself (A @ A) and print the shape of the result. (Expected: (2, 2))",
           starterCode:
-            "A = np.array([[1, 2], [3, 4]])\n\n# print (A @ A).shape\n",
+            "A = np.array([[1, 2], [3, 4]])\n\n# YOUR CODE HERE\n",
           expectedStdout: "(2, 2)",
           hints: ["The @ operator performs matrix multiplication.", "print((A @ A).shape)"],
           solution: "A = np.array([[1, 2], [3, 4]])\nprint((A @ A).shape)",
@@ -284,7 +284,7 @@ export const linearAlgebra: Subject = {
           prompt:
             "Compute the determinant of A = [[1, 2], [3, 4]] and print it rounded to 1 decimal. (Expected: -2.0)",
           starterCode:
-            "# print round(float(np.linalg.det(A)), 1)\n",
+            "# YOUR CODE HERE\n",
           expectedStdout: "-2.0",
           hints: [
             "np.linalg.det(A) computes the determinant.",

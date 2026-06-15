@@ -309,7 +309,7 @@ export const linearRegression: Subject = {
           prompt:
             "Load the diabetes dataset with load_diabetes(return_X_y=True) into X and y, then print X.shape. (Expected: (442, 10))",
           starterCode:
-            "from sklearn.datasets import load_diabetes\n\n# Load X and y, then print X.shape\n",
+            "from sklearn.datasets import load_diabetes\n\n# YOUR CODE HERE\n",
           expectedStdout: "(442, 10)",
           hints: [
             "load_diabetes(return_X_y=True) returns the feature matrix X and the target y.",
@@ -324,7 +324,7 @@ export const linearRegression: Subject = {
           prompt:
             "Split the data 80/20 with train_test_split (random_state=42). Print the number of training and test rows separated by a space. (Expected: 353 89)",
           starterCode:
-            "from sklearn.model_selection import train_test_split\n\n# Split into X_train, X_test, y_train, y_test (test_size=0.2, random_state=42)\n# Then print len(X_train), len(X_test)\n",
+            "from sklearn.model_selection import train_test_split\n\n# YOUR CODE HERE\n",
           expectedStdout: "353 89",
           hints: [
             "train_test_split(X, y, test_size=0.2, random_state=42) returns four arrays.",
@@ -339,7 +339,7 @@ export const linearRegression: Subject = {
           prompt:
             "Create a LinearRegression model and fit it on the training data. Print the number of learned coefficients with print(model.coef_.shape[0]). (Expected: 10)",
           starterCode:
-            "from sklearn.linear_model import LinearRegression\n\n# Create model, fit on X_train/y_train, then print model.coef_.shape[0]\n",
+            "from sklearn.linear_model import LinearRegression\n\n# YOUR CODE HERE\n",
           expectedStdout: "10",
           hints: [
             "model = LinearRegression()",
@@ -354,7 +354,7 @@ export const linearRegression: Subject = {
           prompt:
             "Predict on the test set and print the R² score rounded to 2 decimals, in the form 'R2: 0.45'. (Expected: R2: 0.45)",
           starterCode:
-            "from sklearn.metrics import r2_score\n\n# Compute R2 on the test set and print 'R2: {r2:.2f}'\n",
+            "from sklearn.metrics import r2_score\n\n# YOUR CODE HERE\n",
           expectedStdout: "R2: 0.45",
           hints: [
             "Use model.predict(X_test) to get predictions.",

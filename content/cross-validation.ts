@@ -285,7 +285,7 @@ export const crossValidation: Subject = {
           prompt:
             "Load the iris dataset with load_iris(return_X_y=True) and print the shape of X. (Expected: (150, 4))",
           starterCode:
-            "from sklearn.datasets import load_iris\n\nX, y = load_iris(return_X_y=True)\n# print the shape of X\n",
+            "from sklearn.datasets import load_iris\n\nX, y = load_iris(return_X_y=True)\n# YOUR CODE HERE\n",
           expectedStdout: "(150, 4)",
           hints: ["Use X.shape.", "print(X.shape)"],
           solution:
@@ -297,7 +297,7 @@ export const crossValidation: Subject = {
           prompt:
             "Run 5-fold cross-validation with cross_val_score on LogisticRegression(max_iter=1000, random_state=42). Print how many scores you get back. (Expected: 5)",
           starterCode:
-            "from sklearn.model_selection import cross_val_score\nfrom sklearn.linear_model import LogisticRegression\n\n# scores = cross_val_score(clf, X, y, cv=5)\n# print(len(scores))\n",
+            "from sklearn.model_selection import cross_val_score\nfrom sklearn.linear_model import LogisticRegression\n\n# YOUR CODE HERE\n",
           expectedStdout: "5",
           hints: [
             "clf = LogisticRegression(max_iter=1000, random_state=42)",
@@ -313,7 +313,7 @@ export const crossValidation: Subject = {
           prompt:
             "Print the mean of the 5 cross-validation scores, rounded to 2 decimals. (Expected: 0.97)",
           starterCode:
-            "# print(round(scores.mean(), 2))\n",
+            "# YOUR CODE HERE\n",
           expectedStdout: "0.97",
           hints: [
             "scores is a NumPy array; use scores.mean().",

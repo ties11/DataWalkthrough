@@ -305,7 +305,7 @@ export const classificationMetrics: Subject = {
           prompt:
             "Load breast cancer, split (test_size=0.2, random_state=42), train LogisticRegression(max_iter=5000, random_state=42), and print the precision of test predictions rounded to 2 decimals. (Expected: 0.95)",
           starterCode:
-            "from sklearn.datasets import load_breast_cancer\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import precision_score\n\nX, y = load_breast_cancer(return_X_y=True)\n# split, train, predict, print round(precision, 2)\n",
+            "from sklearn.datasets import load_breast_cancer\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import precision_score\n\nX, y = load_breast_cancer(return_X_y=True)\n# YOUR CODE HERE\n",
           expectedStdout: "0.95",
           hints: [
             "X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)",
@@ -321,7 +321,7 @@ export const classificationMetrics: Subject = {
           prompt:
             "Print the recall of the same predictions, rounded to 2 decimals. (Expected: 0.99)",
           starterCode:
-            "from sklearn.metrics import recall_score\n\n# print round(recall, 2)\n",
+            "from sklearn.metrics import recall_score\n\n# YOUR CODE HERE\n",
           expectedStdout: "0.99",
           hints: [
             "recall_score(y_test, clf.predict(X_test))",
@@ -336,7 +336,7 @@ export const classificationMetrics: Subject = {
           prompt:
             "Print the ROC-AUC using the model's positive-class probabilities (predict_proba[:, 1]), rounded to 2 decimals. (Expected: 1.0)",
           starterCode:
-            "from sklearn.metrics import roc_auc_score\n\n# proba = clf.predict_proba(X_test)[:, 1]\n# print round(roc_auc, 2)\n",
+            "from sklearn.metrics import roc_auc_score\n\n# YOUR CODE HERE\n",
           expectedStdout: "1.0",
           hints: [
             "proba = clf.predict_proba(X_test)[:, 1]",

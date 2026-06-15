@@ -225,7 +225,7 @@ export const kNearestNeighbours: Subject = {
           prompt:
             "Load the iris dataset with load_iris(return_X_y=True) and print the shape of X. (Expected: (150, 4))",
           starterCode:
-            "from sklearn.datasets import load_iris\n\nX, y = load_iris(return_X_y=True)\n# print the shape of X\n",
+            "from sklearn.datasets import load_iris\n\nX, y = load_iris(return_X_y=True)\n# YOUR CODE HERE\n",
           expectedStdout: "(150, 4)",
           hints: ["Use X.shape.", "print(X.shape)"],
           solution:
@@ -237,7 +237,7 @@ export const kNearestNeighbours: Subject = {
           prompt:
             "Split into train/test with test_size=0.2, random_state=42. Print the number of training and test samples, space-separated. (Expected: 120 30)",
           starterCode:
-            "from sklearn.model_selection import train_test_split\n\n# split and print len(X_train), len(X_test)\n",
+            "from sklearn.model_selection import train_test_split\n\n# YOUR CODE HERE\n",
           expectedStdout: "120 30",
           hints: [
             "train_test_split(X, y, test_size=0.2, random_state=42)",
@@ -252,7 +252,7 @@ export const kNearestNeighbours: Subject = {
           prompt:
             "Train KNeighborsClassifier(n_neighbors=5) on the training set, predict on the test set, and print the accuracy rounded to 2 decimals. (Expected: 1.0)",
           starterCode:
-            "from sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.metrics import accuracy_score\n\n# fit, predict, print round(accuracy, 2)\n",
+            "from sklearn.neighbors import KNeighborsClassifier\nfrom sklearn.metrics import accuracy_score\n\n# YOUR CODE HERE\n",
           expectedStdout: "1.0",
           hints: [
             "knn = KNeighborsClassifier(n_neighbors=5); knn.fit(X_train, y_train)",

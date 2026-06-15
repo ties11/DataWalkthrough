@@ -292,7 +292,7 @@ export const nlpFundamentals: Subject = {
           prompt:
             "Load the 20 Newsgroups dataset (categories: 'rec.sport.hockey', 'sci.space', 'talk.politics.guns'). Vectorise with TfidfVectorizer (max_features=5000). Print the feature matrix shape.",
           starterCode:
-            "from sklearn.datasets import fetch_20newsgroups\nfrom sklearn.feature_extraction.text import TfidfVectorizer\n\ncats = ['rec.sport.hockey', 'sci.space', 'talk.politics.guns']\ntrain = fetch_20newsgroups(subset='train', categories=cats, remove=('headers', 'footers', 'quotes'))\n\nvec = TfidfVectorizer(max_features=5000)\nX = vec.fit_transform(train.data)\nprint(X.shape)",
+            "from sklearn.datasets import fetch_20newsgroups\nfrom sklearn.feature_extraction.text import TfidfVectorizer\n\ncats = ['rec.sport.hockey', 'sci.space', 'talk.politics.guns']\ntrain = fetch_20newsgroups(subset='train', categories=cats, remove=('headers', 'footers', 'quotes'))\n\nvec = TfidfVectorizer(max_features=5000)\n# YOUR CODE HERE\n",
           expectedStdout: "(1764, 5000)",
           hints: [
             "`fetch_20newsgroups` downloads and caches the dataset on first use.",
@@ -307,7 +307,7 @@ export const nlpFundamentals: Subject = {
           prompt:
             "Using the same 3-category newsgroups setup, train a Logistic Regression on the TF-IDF training vectors, evaluate on the test set, and print test accuracy rounded to 3 dp.",
           starterCode:
-            "from sklearn.datasets import fetch_20newsgroups\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.pipeline import Pipeline\n\ncats = ['rec.sport.hockey', 'sci.space', 'talk.politics.guns']\ntrain = fetch_20newsgroups(subset='train', categories=cats, remove=('headers', 'footers', 'quotes'))\ntest  = fetch_20newsgroups(subset='test',  categories=cats, remove=('headers', 'footers', 'quotes'))\n\npipe = Pipeline([\n    ('tfidf', TfidfVectorizer(max_features=5000)),\n    ('lr',   LogisticRegression(max_iter=1000, random_state=42)),\n])\npipe.fit(train.data, train.target)\nprint(round(pipe.score(test.data, test.target), 3))",
+            "from sklearn.datasets import fetch_20newsgroups\nfrom sklearn.feature_extraction.text import TfidfVectorizer\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.pipeline import Pipeline\n\ncats = ['rec.sport.hockey', 'sci.space', 'talk.politics.guns']\ntrain = fetch_20newsgroups(subset='train', categories=cats, remove=('headers', 'footers', 'quotes'))\ntest  = fetch_20newsgroups(subset='test',  categories=cats, remove=('headers', 'footers', 'quotes'))\n\n# YOUR CODE HERE\n",
           expectedStdout: "0.879",
           hints: [
             "A Pipeline chains preprocessing and modelling — fit on train, score on test.",

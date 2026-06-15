@@ -305,7 +305,7 @@ export const biasVarianceTradeoff: Subject = {
           prompt:
             "Load the breast cancer dataset and split with test_size=0.2, random_state=42. Print the number of training and test samples space-separated. (Expected: 455 114)",
           starterCode:
-            "from sklearn.datasets import load_breast_cancer\nfrom sklearn.model_selection import train_test_split\n\nX, y = load_breast_cancer(return_X_y=True)\n# split and print\n",
+            "from sklearn.datasets import load_breast_cancer\nfrom sklearn.model_selection import train_test_split\n\nX, y = load_breast_cancer(return_X_y=True)\n# YOUR CODE HERE\n",
           expectedStdout: "455 114",
           hints: [
             "train_test_split(X, y, test_size=0.2, random_state=42)",
@@ -320,7 +320,7 @@ export const biasVarianceTradeoff: Subject = {
           prompt:
             "Train a shallow tree DecisionTreeClassifier(max_depth=1, random_state=42) and print its TRAINING accuracy rounded to 2 decimals. This is the high-bias model. (Expected: 0.92)",
           starterCode:
-            "from sklearn.tree import DecisionTreeClassifier\n\n# fit max_depth=1 on training data, print round(train accuracy, 2)\n",
+            "from sklearn.tree import DecisionTreeClassifier\n\n# YOUR CODE HERE\n",
           expectedStdout: "0.92",
           hints: [
             "shallow = DecisionTreeClassifier(max_depth=1, random_state=42); shallow.fit(X_train, y_train)",
@@ -336,7 +336,7 @@ export const biasVarianceTradeoff: Subject = {
           prompt:
             "Train a deep tree DecisionTreeClassifier(max_depth=None, random_state=42) and print its TRAINING accuracy rounded to 2 decimals. Note how it memorises the training data perfectly — the high-variance extreme. (Expected: 1.0)",
           starterCode:
-            "# fit max_depth=None on training data, print round(train accuracy, 2)\n",
+            "# YOUR CODE HERE\n",
           expectedStdout: "1.0",
           hints: [
             "deep = DecisionTreeClassifier(max_depth=None, random_state=42); deep.fit(X_train, y_train)",

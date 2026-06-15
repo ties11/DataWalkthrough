@@ -253,7 +253,7 @@ export const dataWrangling: Subject = {
           prompt:
             "Create a DataFrame df = pd.DataFrame({'a':[1,2,None,4],'b':[10,None,30,40]}). Print the total number of missing values across the whole frame as an integer. (Expected: 2)",
           starterCode:
-            "import pandas as pd\ndf = pd.DataFrame({'a':[1,2,None,4],'b':[10,None,30,40]})\n\n# print int(df.isna().sum().sum())\n",
+            "import pandas as pd\ndf = pd.DataFrame({'a':[1,2,None,4],'b':[10,None,30,40]})\n\n# YOUR CODE HERE\n",
           expectedStdout: "2",
           hints: [
             "df.isna() marks missing values as True.",
@@ -269,7 +269,7 @@ export const dataWrangling: Subject = {
           prompt:
             "Fill all missing values with 0, then print the total sum of every value in the filled frame, rounded to 1 decimal. (Expected: 87.0)",
           starterCode:
-            "# filled = df.fillna(0)\n# print round(float(filled.values.sum()), 1)\n",
+            "# YOUR CODE HERE\n",
           expectedStdout: "87.0",
           hints: [
             "df.fillna(0) replaces missing values with 0.",
@@ -285,7 +285,7 @@ export const dataWrangling: Subject = {
           prompt:
             "Given g = pd.DataFrame({'g':['x','x','y'],'v':[1,3,10]}), group by 'g', take the mean of 'v', and print the mean for group 'y' rounded to 1 decimal. (Expected: 10.0)",
           starterCode:
-            "g = pd.DataFrame({'g':['x','x','y'],'v':[1,3,10]})\n\n# grouped = g.groupby('g')['v'].mean()\n# print round(float(grouped['y']), 1)\n",
+            "g = pd.DataFrame({'g':['x','x','y'],'v':[1,3,10]})\n\n# YOUR CODE HERE\n",
           expectedStdout: "10.0",
           hints: [
             "g.groupby('g')['v'].mean() gives the mean of v per group.",

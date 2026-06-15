@@ -258,7 +258,7 @@ export const calculusOptimization: Subject = {
           prompt:
             "Numerically estimate the derivative of f(x) = x² at x = 3 using the central difference (f(x+h) - f(x-h)) / (2h) with h = 1e-6. Print the result rounded to the nearest integer. (Expected: 6)",
           starterCode:
-            "f = lambda x: x**2\nh = 1e-6\n\n# estimate the derivative at x=3, print round(...)\n",
+            "f = lambda x: x**2\nh = 1e-6\n\n# YOUR CODE HERE\n",
           expectedStdout: "6",
           hints: [
             "Central difference: (f(3+h) - f(3-h)) / (2*h)",
@@ -274,7 +274,7 @@ export const calculusOptimization: Subject = {
           prompt:
             "Minimise (x - 4)² with gradient descent. The gradient is 2*(x - 4). Start at x = 0, learning rate 0.1, run 100 iterations, then print x rounded to 2 decimals. (Expected: 4.0)",
           starterCode:
-            "x = 0.0\nlr = 0.1\n\n# loop 100 times: x = x - lr * 2*(x - 4)\n# then print round(x, 2)\n",
+            "x = 0.0\nlr = 0.1\n\n# YOUR CODE HERE\n",
           expectedStdout: "4.0",
           hints: [
             "The gradient of (x-4)² is 2*(x-4).",

@@ -250,7 +250,7 @@ export const hypothesisTesting: Subject = {
           prompt:
             "Given sample = [5.1,4.9,5.2,5.0,4.8,5.3,5.1,4.95], run a one-sample t-test against a population mean of 5.0 using scipy.stats.ttest_1samp. Print whether the p-value is greater than 0.05 (i.e. print the boolean p > 0.05). (Expected: True)",
           starterCode:
-            "from scipy import stats\nsample = [5.1,4.9,5.2,5.0,4.8,5.3,5.1,4.95]\n\n# t, p = stats.ttest_1samp(sample, 5.0)\n# print(p > 0.05)\n",
+            "from scipy import stats\nsample = [5.1,4.9,5.2,5.0,4.8,5.3,5.1,4.95]\n\n# YOUR CODE HERE\n",
           expectedStdout: "True",
           hints: [
             "stats.ttest_1samp(sample, 5.0) returns the t-statistic and p-value.",
@@ -266,7 +266,7 @@ export const hypothesisTesting: Subject = {
           prompt:
             "Compute a z-score by hand: sample mean 5.2, population mean 5.0, population std 0.4, sample size n = 16. The formula is (mean - pop_mean) / (std / sqrt(n)). Print it rounded to 1 decimal. (Expected: 2.0)",
           starterCode:
-            "import numpy as np\nmean = 5.2\npop_mean = 5.0\nstd = 0.4\nn = 16\n\n# z = (mean - pop_mean) / (std / sqrt(n)); print round(z, 1)\n",
+            "import numpy as np\nmean = 5.2\npop_mean = 5.0\nstd = 0.4\nn = 16\n\n# YOUR CODE HERE\n",
           expectedStdout: "2.0",
           hints: [
             "The standard error is std / np.sqrt(n).",

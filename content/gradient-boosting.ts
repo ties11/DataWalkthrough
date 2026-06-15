@@ -239,7 +239,7 @@ export const gradientBoosting: Subject = {
           prompt:
             "Load the breast cancer dataset with load_breast_cancer(return_X_y=True), split with test_size=0.2 and random_state=42, and print the number of training and test samples space-separated. (Expected: 455 114)",
           starterCode:
-            "from sklearn.datasets import load_breast_cancer\nfrom sklearn.model_selection import train_test_split\n\nX, y = load_breast_cancer(return_X_y=True)\n# split and print len(X_train), len(X_test)\n",
+            "from sklearn.datasets import load_breast_cancer\nfrom sklearn.model_selection import train_test_split\n\nX, y = load_breast_cancer(return_X_y=True)\n# YOUR CODE HERE\n",
           expectedStdout: "455 114",
           hints: [
             "train_test_split(X, y, test_size=0.2, random_state=42)",
@@ -254,7 +254,7 @@ export const gradientBoosting: Subject = {
           prompt:
             "Train GradientBoostingClassifier(n_estimators=100, random_state=42), predict on the test set, and print the accuracy rounded to 2 decimals. (Expected: 0.96)",
           starterCode:
-            "from sklearn.ensemble import GradientBoostingClassifier\nfrom sklearn.metrics import accuracy_score\n\n# fit, predict, print round(accuracy, 2)\n",
+            "from sklearn.ensemble import GradientBoostingClassifier\nfrom sklearn.metrics import accuracy_score\n\n# YOUR CODE HERE\n",
           expectedStdout: "0.96",
           hints: [
             "gb = GradientBoostingClassifier(n_estimators=100, random_state=42); gb.fit(X_train, y_train)",
@@ -270,7 +270,7 @@ export const gradientBoosting: Subject = {
           prompt:
             "Print the number of features the model saw, using gb.n_features_in_. (Expected: 30)",
           starterCode:
-            "# print(gb.n_features_in_)\n",
+            "# YOUR CODE HERE\n",
           expectedStdout: "30",
           hints: [
             "Fitted scikit-learn models store the feature count in n_features_in_.",

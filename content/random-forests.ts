@@ -327,7 +327,7 @@ export const randomForests: Subject = {
           prompt:
             "Load the Iris dataset with sklearn's load_iris(return_X_y=True) into X and y, then print X.shape. (Expected: (150, 4))",
           starterCode:
-            "from sklearn.datasets import load_iris\n\n# Load X and y, then print X.shape\n",
+            "from sklearn.datasets import load_iris\n\n# YOUR CODE HERE\n",
           expectedStdout: "(150, 4)",
           hints: [
             "load_iris(return_X_y=True) returns two things: the feature matrix X and the labels y.",
@@ -342,7 +342,7 @@ export const randomForests: Subject = {
           prompt:
             "Split the data 80/20 with train_test_split (random_state=42). Print the number of training and test rows, separated by a space. (Expected: 120 30)",
           starterCode:
-            "from sklearn.model_selection import train_test_split\n\n# Split into X_train, X_test, y_train, y_test (test_size=0.2, random_state=42)\n# Then print len(X_train), len(X_test)\n",
+            "from sklearn.model_selection import train_test_split\n\n# YOUR CODE HERE\n",
           expectedStdout: "120 30",
           hints: [
             "train_test_split(X, y, test_size=0.2, random_state=42) returns four arrays.",
@@ -357,7 +357,7 @@ export const randomForests: Subject = {
           prompt:
             "Create a RandomForestClassifier with 100 trees (random_state=42) and fit it on the training data. Print 'trained:' followed by clf.n_estimators. (Expected: trained: 100)",
           starterCode:
-            "from sklearn.ensemble import RandomForestClassifier\n\n# Create clf, fit on X_train/y_train, then print 'trained:', clf.n_estimators\n",
+            "from sklearn.ensemble import RandomForestClassifier\n\n# YOUR CODE HERE\n",
           expectedStdout: "trained: 100",
           hints: [
             "clf = RandomForestClassifier(n_estimators=100, random_state=42)",
@@ -372,7 +372,7 @@ export const randomForests: Subject = {
           prompt:
             "Predict on the test set and print the accuracy rounded to 2 decimals, in the form 'Accuracy: 1.00'. (Expected: Accuracy: 1.00)",
           starterCode:
-            "from sklearn.metrics import accuracy_score\n\n# Compute accuracy on the test set and print 'Accuracy: {acc:.2f}'\n",
+            "from sklearn.metrics import accuracy_score\n\n# YOUR CODE HERE\n",
           expectedStdout: "Accuracy: 1.00",
           hints: [
             "Use clf.predict(X_test) to get predictions.",

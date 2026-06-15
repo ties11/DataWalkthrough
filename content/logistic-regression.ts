@@ -236,7 +236,7 @@ export const logisticRegression: Subject = {
           prompt:
             "Load the breast cancer dataset with load_breast_cancer(return_X_y=True) and print the shape of X. (Expected: (569, 30))",
           starterCode:
-            "from sklearn.datasets import load_breast_cancer\n\nX, y = load_breast_cancer(return_X_y=True)\n# print the shape of X\n",
+            "from sklearn.datasets import load_breast_cancer\n\nX, y = load_breast_cancer(return_X_y=True)\n# YOUR CODE HERE\n",
           expectedStdout: "(569, 30)",
           hints: ["X is a NumPy array; use X.shape.", "print(X.shape)"],
           solution:
@@ -248,7 +248,7 @@ export const logisticRegression: Subject = {
           prompt:
             "Split into train and test sets with test_size=0.2 and random_state=42. Print the number of training and test samples, space-separated. (Expected: 455 114)",
           starterCode:
-            "from sklearn.model_selection import train_test_split\n\n# X_train, X_test, y_train, y_test = train_test_split(...)\n# print(len(X_train), len(X_test))\n",
+            "from sklearn.model_selection import train_test_split\n\n# YOUR CODE HERE\n",
           expectedStdout: "455 114",
           hints: [
             "train_test_split(X, y, test_size=0.2, random_state=42)",
@@ -263,7 +263,7 @@ export const logisticRegression: Subject = {
           prompt:
             "Train LogisticRegression(max_iter=5000, random_state=42) on the training set, predict on the test set, and print the accuracy rounded to 2 decimals. (Expected: 0.96)",
           starterCode:
-            "from sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score\n\n# fit, predict, print round(accuracy, 2)\n",
+            "from sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import accuracy_score\n\n# YOUR CODE HERE\n",
           expectedStdout: "0.96",
           hints: [
             "clf = LogisticRegression(max_iter=5000, random_state=42); clf.fit(X_train, y_train)",

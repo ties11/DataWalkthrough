@@ -325,7 +325,6 @@ def causal_attention(Q, K, V):
     seq_len = Q.shape[0]
     scores = Q @ K.T / np.sqrt(d_k)
     # TODO: create causal mask — upper triangle should be -1e9
-    # Hint: np.triu(np.ones((seq_len, seq_len)), k=1)
     pass
 
 np.random.seed(0)
