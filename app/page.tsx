@@ -9,6 +9,7 @@ import { getAllProgress, ProgressData } from "@/lib/progress";
 import { useAuth } from "@/lib/auth";
 import { getProfile, recommendedPhase, goalLabel, Profile } from "@/lib/profile";
 import OnboardingModal from "@/components/OnboardingModal";
+import LogoMark from "@/components/LogoMark";
 
 const PHASES: { num: number; label: string; description: string }[] = [
   { num: 0, label: "Foundations", description: "Statistics, linear algebra, calculus, and data wrangling — the bedrock everything else builds on." },
@@ -67,7 +68,10 @@ export default function Home() {
       {/* Sticky top nav */}
       <nav className="home-nav">
         <div className="home-nav-inner">
-          <div className="home-eyebrow">Learn Data Science</div>
+          <Link href="/" className="home-brand">
+            <LogoMark size={34} />
+            <span className="home-brand-text">Data<span className="home-brand-accent">Walkthrough</span></span>
+          </Link>
           <div className="home-topbar-right">
             <div className="home-view-toggle">
               <button
@@ -126,7 +130,8 @@ export default function Home() {
 
         {/* Hero */}
         <div className="home-hero">
-          <h1 className="home-title">From theory to code,<br/>one subject at a time.</h1>
+          <h1 className="home-title">DataWalkthrough</h1>
+          <p className="home-subtitle">A complete walkthrough of all subjects in data science and machine learning, with hands-on coding examples.</p>
           <p className="home-lede">
             The intuition, the mathematics, when and why to use it — hands-on
             coding that runs in the browser, and a quick-reference cheat sheet.

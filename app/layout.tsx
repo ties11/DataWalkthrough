@@ -4,8 +4,8 @@ import "./reader.css";
 import { AuthProvider } from "@/lib/auth";
 
 export const metadata: Metadata = {
-  title: "Data Science Learning Platform",
-  description: "Learn data science from theory to code.",
+  title: "DataWalkthrough",
+  description: "A complete walkthrough of all subjects in data science and machine learning, with hands-on coding examples.",
 };
 
 export default function RootLayout({

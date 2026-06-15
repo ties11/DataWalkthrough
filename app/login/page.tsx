@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
+import LogoMark from "@/components/LogoMark";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/lib/auth";
 
@@ -93,11 +94,11 @@ export default function LoginPage() {
       <div className="auth-brand">
         <div className="auth-brand-inner">
           <Link href="/" className="auth-brand-logo">
-            <span className="auth-brand-mark">DS</span>
-            <span className="auth-brand-name">Data Science<br/>Learning Platform</span>
+            <LogoMark size={48} dark />
+            <span className="auth-brand-name">Data<span style={{color:"#2ed2b6"}}>Walkthrough</span></span>
           </Link>
           <div className="auth-brand-tagline">
-            From theory to code,<br/>one subject at a time.
+            A complete walkthrough of all subjects in data science and machine learning, with hands-on coding examples.
           </div>
           <ul className="auth-brand-features">
             <li>25 subjects across 6 phases</li>
