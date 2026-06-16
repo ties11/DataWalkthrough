@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import DonationBanner from "@/components/DonationBanner";
 
 export default function AboutPage() {
   return (
@@ -62,24 +63,8 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="about-support-card">
-          <div className="about-support-icon">☕</div>
-          <h2 className="about-support-title">Support this project</h2>
-          <p className="about-support-text">
-            This platform is completely free and always will be. If it&apos;s been useful
-            and you&apos;d like to chip in for hosting and future content, it&apos;d mean a lot.
-          </p>
-          {/* TODO: Replace href with your real donation link */}
-          <a
-            href="https://donate.example.com/ties-waenink"
-            className="about-donate-btn"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            ☕ Buy me a coffee
-          </a>
-          <p className="about-donate-note">Donation link coming soon — staying free either way.</p>
-        </section>
+        {/* TODO: Replace tikkieUrl and stripeUrl with real links once set up */}
+        <DonationBanner context="platform" />
       </main>
     </div>
   );

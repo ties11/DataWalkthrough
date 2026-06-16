@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./reader.css";
 import { AuthProvider } from "@/lib/auth";
+import MobileNav from "@/components/MobileNav";
 
 export const metadata: Metadata = {
   title: "DataWalkthrough",
@@ -21,7 +22,12 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-full flex flex-col"><AuthProvider>{children}</AuthProvider></body>
+      <body className="min-h-full flex flex-col">
+        <AuthProvider>
+          {children}
+          <MobileNav />
+        </AuthProvider>
+      </body>
     </html>
   );
 }

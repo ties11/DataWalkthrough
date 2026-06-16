@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useAuth } from "@/lib/auth";
+import DiplomaCertificate from "@/components/DiplomaCertificate";
 
 const FURTHER_READING = [
   {
@@ -217,6 +218,12 @@ export default function CompletePage() {
               </div>
             </div>
           ))}
+        </section>
+
+        {/* Diploma certificate */}
+        <section className="complete-section">
+          <h2 className="complete-section-title">Your Certificate</h2>
+          <DiplomaCertificate name={displayName || "Data Science Graduate"} />
         </section>
 
         {/* Sign-off */}

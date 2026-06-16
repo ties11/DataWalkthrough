@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<title>Logo concepts</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: #0d0f12; font-family: system-ui, sans-serif; padding: 52px 44px 80px; }
+  h1 { font-family: Georgia, serif; font-size: 13px; letter-spacing: 0.12em; color: #3d4550;
+       text-transform: uppercase; margin-bottom: 56px; }
+
+  .grid { display: flex; gap: 64px; flex-wrap: wrap; }
+  .col { display: flex; flex-direction: column; gap: 28px; }
+  .tag { font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase;
+         color: #2ed2b6; font-family: monospace; margin-bottom: 2px; }
+  .name { font-family: Georgia, serif; font-size: 19px; color: #f0f3f6; margin-bottom: 3px; }
+  .desc { font-size: 11.5px; color: #4a5460; line-height: 1.55; max-width: 210px; }
+
+  .row { display: flex; align-items: flex-end; gap: 18px; }
+  .cell { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+  .sz { font-size: 8.5px; color: #2e3540; letter-spacing: 0.05em; font-family: monospace; }
+
+  .wm { display: flex; align-items: center; gap: 11px; padding: 14px 20px;
+         border: 1px solid #1a1f27; border-radius: 10px; width: fit-content; }
+  .wm-t { font-family: Georgia, serif; font-size: 19px; color: #d8dfe6; letter-spacing: -0.01em; }
+  .wm-t em { font-style: normal; color: #2ed2b6; }
+  .sep { width: 1px; height: 28px; background: #1e2530; }
+
+  .on-light { background: #f4f7f5; border-radius: 10px; padding: 14px 20px;
+              display: flex; align-items: center; gap: 11px; width: fit-content; }
+  .ol-t { font-family: Georgia, serif; font-size: 19px; color: #15201b; letter-spacing: -0.01em; }
+  .ol-t em { font-style: normal; color: #0c7a4c; }
+  .ol-sep { width: 1px; height: 28px; background: #d5ddd8; }
+
+  hr.divider { border: none; border-top: 1px solid #141920; margin: 8px 0; }
+</style>
+</head>
+<body>
+<h1>Logo concepts — tell me which direction</h1>
+<div class="grid">
+
+<!-- ═══════════════════════════════════════════
+     OPTION A  ·  THE GROVE  ·  Binary tree
+═══════════════════════════════════════════ -->
+<div class="col">
+  <div>
+    <div class="tag">Option A</div>
+    <div class="name">The Grove</div>
+    <div class="desc">A binary decision tree drawn as a living plant — trunk, branches, leaf-nodes. Machine learning meets forest.</div>
+  </div>
+
+  <div class="row">
+    <!-- 128 -->
+    <div class="cell">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="128" height="128">
+        <defs>
+          <radialGradient id="a-bg" cx="40%" cy="35%" r="65%">
+            <stop offset="0%" stop-color="#0f1c15"/>
+            <stop offset="100%" stop-color="#0a0d0b"/>
+          </radialGradient>
+          <filter id="a-glow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="2.2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <rect width="64" height="64" rx="13" fill="url(#a-bg)"/>
+        <!-- trunk -->
+        <line x1="32" y1="57" x2="32" y2="41" stroke="#14845a" stroke-width="2.6" stroke-linecap="round"/>
+        <!-- level-1 branches (organic bezier) -->
+        <path d="M32,41 Q30,41 16,26" stroke="#1ab07a" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+        <path d="M32,41 Q34,41 48,26" stroke="#1ab07a" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+        <!-- level-2 branches -->
+        <path d="M16,26 Q13,21  9,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <path d="M16,26 Q18,21 22,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <path d="M48,26 Q45,21 42,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <path d="M48,26 Q51,21 55,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <!-- root node -->
+        <circle cx="32" cy="57" r="2.5" fill="#14845a"/>
+        <!-- junction nodes -->
+        <circle cx="32" cy="41" r="2.3" fill="#1ab07a"/>
+        <circle cx="16" cy="26" r="2"   fill="#2ed2b6" opacity="0.85"/>
+        <circle cx="48" cy="26" r="2"   fill="#2ed2b6" opacity="0.85"/>
+        <!-- leaf nodes (glowing) -->
+        <g filter="url(#a-glow)">
+          <circle cx="9"  cy="14" r="2.3" fill="#2ed2b6"/>
+          <circle cx="22" cy="14" r="2.3" fill="#2ed2b6"/>
+          <circle cx="42" cy="14" r="2.3" fill="#2ed2b6"/>
+          <circle cx="55" cy="14" r="2.3" fill="#2ed2b6"/>
+        </g>
+      </svg>
+      <span class="sz">128 px</span>
+    </div>
+    <!-- 64 -->
+    <div class="cell">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+        <defs><radialGradient id="a-bg2" cx="40%" cy="35%" r="65%"><stop offset="0%" stop-color="#0f1c15"/><stop offset="100%" stop-color="#0a0d0b"/></radialGradient><filter id="a-glow2" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <rect width="64" height="64" rx="13" fill="url(#a-bg2)"/>
+        <line x1="32" y1="57" x2="32" y2="41" stroke="#14845a" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M32,41 Q30,41 16,26" stroke="#1ab07a" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+        <path d="M32,41 Q34,41 48,26" stroke="#1ab07a" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+        <path d="M16,26 Q13,21  9,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <path d="M16,26 Q18,21 22,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <path d="M48,26 Q45,21 42,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <path d="M48,26 Q51,21 55,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <circle cx="32" cy="57" r="2.5" fill="#14845a"/>
+        <circle cx="32" cy="41" r="2.3" fill="#1ab07a"/>
+        <circle cx="16" cy="26" r="2"   fill="#2ed2b6" opacity="0.85"/>
+        <circle cx="48" cy="26" r="2"   fill="#2ed2b6" opacity="0.85"/>
+        <g filter="url(#a-glow2)"><circle cx="9" cy="14" r="2.3" fill="#2ed2b6"/><circle cx="22" cy="14" r="2.3" fill="#2ed2b6"/><circle cx="42" cy="14" r="2.3" fill="#2ed2b6"/><circle cx="55" cy="14" r="2.3" fill="#2ed2b6"/></g>
+      </svg>
+      <span class="sz">64 px</span>
+    </div>
+    <!-- 32 -->
+    <div class="cell">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+        <defs><radialGradient id="a-bg3" cx="40%" cy="35%" r="65%"><stop offset="0%" stop-color="#0f1c15"/><stop offset="100%" stop-color="#0a0d0b"/></radialGradient><filter id="a-glow3" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <rect width="64" height="64" rx="13" fill="url(#a-bg3)"/>
+        <line x1="32" y1="57" x2="32" y2="41" stroke="#14845a" stroke-width="2.6" stroke-linecap="round"/>
+        <path d="M32,41 Q30,41 16,26" stroke="#1ab07a" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+        <path d="M32,41 Q34,41 48,26" stroke="#1ab07a" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+        <path d="M16,26 Q13,21  9,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <path d="M16,26 Q18,21 22,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <path d="M48,26 Q45,21 42,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <path d="M48,26 Q51,21 55,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+        <circle cx="32" cy="57" r="2.5" fill="#14845a"/>
+        <circle cx="32" cy="41" r="2.3" fill="#1ab07a"/>
+        <circle cx="16" cy="26" r="2"   fill="#2ed2b6" opacity="0.85"/>
+        <circle cx="48" cy="26" r="2"   fill="#2ed2b6" opacity="0.85"/>
+        <g filter="url(#a-glow3)"><circle cx="9" cy="14" r="2.3" fill="#2ed2b6"/><circle cx="22" cy="14" r="2.3" fill="#2ed2b6"/><circle cx="42" cy="14" r="2.3" fill="#2ed2b6"/><circle cx="55" cy="14" r="2.3" fill="#2ed2b6"/></g>
+      </svg>
+      <span class="sz">32 px</span>
+    </div>
+  </div>
+
+  <!-- wordmark dark -->
+  <div class="wm">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+      <defs><radialGradient id="a-bg4" cx="40%" cy="35%" r="65%"><stop offset="0%" stop-color="#0f1c15"/><stop offset="100%" stop-color="#0a0d0b"/></radialGradient><filter id="a-glow4" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <rect width="64" height="64" rx="13" fill="url(#a-bg4)"/>
+      <line x1="32" y1="57" x2="32" y2="41" stroke="#14845a" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M32,41 Q30,41 16,26" stroke="#1ab07a" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+      <path d="M32,41 Q34,41 48,26" stroke="#1ab07a" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+      <path d="M16,26 Q13,21  9,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <path d="M16,26 Q18,21 22,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <path d="M48,26 Q45,21 42,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <path d="M48,26 Q51,21 55,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <circle cx="32" cy="57" r="2.5" fill="#14845a"/>
+      <circle cx="32" cy="41" r="2.3" fill="#1ab07a"/>
+      <circle cx="16" cy="26" r="2"   fill="#2ed2b6" opacity="0.85"/>
+      <circle cx="48" cy="26" r="2"   fill="#2ed2b6" opacity="0.85"/>
+      <g filter="url(#a-glow4)"><circle cx="9" cy="14" r="2.3" fill="#2ed2b6"/><circle cx="22" cy="14" r="2.3" fill="#2ed2b6"/><circle cx="42" cy="14" r="2.3" fill="#2ed2b6"/><circle cx="55" cy="14" r="2.3" fill="#2ed2b6"/></g>
+    </svg>
+    <div class="sep"></div>
+    <div class="wm-t">Data<em>Walkthrough</em></div>
+  </div>
+  <!-- wordmark light -->
+  <div class="on-light">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+      <defs><radialGradient id="a-bg5" cx="40%" cy="35%" r="65%"><stop offset="0%" stop-color="#0f1c15"/><stop offset="100%" stop-color="#0a0d0b"/></radialGradient></defs>
+      <rect width="64" height="64" rx="13" fill="url(#a-bg5)"/>
+      <line x1="32" y1="57" x2="32" y2="41" stroke="#14845a" stroke-width="2.6" stroke-linecap="round"/>
+      <path d="M32,41 Q30,41 16,26" stroke="#1ab07a" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+      <path d="M32,41 Q34,41 48,26" stroke="#1ab07a" stroke-width="1.9" fill="none" stroke-linecap="round"/>
+      <path d="M16,26 Q13,21  9,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <path d="M16,26 Q18,21 22,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <path d="M48,26 Q45,21 42,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <path d="M48,26 Q51,21 55,14" stroke="#2ed2b6" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+      <circle cx="32" cy="57" r="2.5" fill="#14845a"/>
+      <circle cx="32" cy="41" r="2.3" fill="#1ab07a"/>
+      <circle cx="16" cy="26" r="2"   fill="#2ed2b6" opacity="0.85"/>
+      <circle cx="48" cy="26" r="2"   fill="#2ed2b6" opacity="0.85"/>
+      <circle cx="9"  cy="14" r="2.3" fill="#2ed2b6"/>
+      <circle cx="22" cy="14" r="2.3" fill="#2ed2b6"/>
+      <circle cx="42" cy="14" r="2.3" fill="#2ed2b6"/>
+      <circle cx="55" cy="14" r="2.3" fill="#2ed2b6"/>
+    </svg>
+    <div class="ol-sep"></div>
+    <div class="ol-t">Data<em>Walkthrough</em></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     OPTION B  ·  THE LEAF  ·  Vein network
+═══════════════════════════════════════════ -->
+<div class="col">
+  <div>
+    <div class="tag">Option B</div>
+    <div class="name">The Leaf</div>
+    <div class="desc">A leaf whose veins form a data network — biology meets graph theory. Organic, precise, alive.</div>
+  </div>
+
+  <div class="row">
+    <div class="cell">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="128" height="128">
+        <defs>
+          <radialGradient id="b-bg" cx="50%" cy="30%" r="65%">
+            <stop offset="0%" stop-color="#0f1c15"/>
+            <stop offset="100%" stop-color="#0a0d0b"/>
+          </radialGradient>
+          <!-- leaf fill gradient -->
+          <linearGradient id="b-fill" x1="50%" y1="0%" x2="50%" y2="100%">
+            <stop offset="0%" stop-color="#2ed2b6" stop-opacity="0.22"/>
+            <stop offset="100%" stop-color="#14845a" stop-opacity="0.10"/>
+          </linearGradient>
+          <filter id="b-glow" x="-80%" y="-80%" width="260%" height="260%">
+            <feGaussianBlur stdDeviation="2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <rect width="64" height="64" rx="13" fill="url(#b-bg)"/>
+        <!-- leaf shape filled -->
+        <path d="M32,57 C42,44 47,28 32,9 C17,28 22,44 32,57 Z" fill="url(#b-fill)"/>
+        <!-- leaf outline -->
+        <path d="M32,57 C42,44 47,28 32,9 C17,28 22,44 32,57 Z"
+              fill="none" stroke="#2ed2b6" stroke-width="0.9" opacity="0.5"/>
+        <!-- center midrib -->
+        <line x1="32" y1="57" x2="32" y2="9" stroke="#2ed2b6" stroke-width="1.1" opacity="0.6" stroke-linecap="round"/>
+        <!-- veins (secondary, fan outward) -->
+        <line x1="32" y1="22" x2="38" y2="19" stroke="#2ed2b6" stroke-width="0.7" opacity="0.55"/>
+        <line x1="32" y1="22" x2="26" y2="19" stroke="#2ed2b6" stroke-width="0.7" opacity="0.55"/>
+        <line x1="32" y1="31" x2="40" y2="27" stroke="#2ed2b6" stroke-width="0.8" opacity="0.55"/>
+        <line x1="32" y1="31" x2="24" y2="27" stroke="#2ed2b6" stroke-width="0.8" opacity="0.55"/>
+        <line x1="32" y1="40" x2="41" y2="36" stroke="#2ed2b6" stroke-width="0.8" opacity="0.5"/>
+        <line x1="32" y1="40" x2="23" y2="36" stroke="#2ed2b6" stroke-width="0.8" opacity="0.5"/>
+        <line x1="32" y1="49" x2="39" y2="46" stroke="#2ed2b6" stroke-width="0.7" opacity="0.45"/>
+        <line x1="32" y1="49" x2="25" y2="46" stroke="#2ed2b6" stroke-width="0.7" opacity="0.45"/>
+        <!-- nodes at vein tips (glowing) -->
+        <g filter="url(#b-glow)">
+          <circle cx="32" cy="9"  r="2.5" fill="#2ed2b6"/>
+          <circle cx="38" cy="19" r="1.6" fill="#2ed2b6"/>
+          <circle cx="26" cy="19" r="1.6" fill="#2ed2b6"/>
+          <circle cx="40" cy="27" r="1.8" fill="#2ed2b6"/>
+          <circle cx="24" cy="27" r="1.8" fill="#2ed2b6"/>
+          <circle cx="41" cy="36" r="1.8" fill="#2ed2b6"/>
+          <circle cx="23" cy="36" r="1.8" fill="#2ed2b6"/>
+          <circle cx="39" cy="46" r="1.6" fill="#2ed2b6"/>
+          <circle cx="25" cy="46" r="1.6" fill="#2ed2b6"/>
+        </g>
+        <!-- stem -->
+        <line x1="32" y1="57" x2="32" y2="60" stroke="#14845a" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="sz">128 px</span>
+    </div>
+    <div class="cell">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+        <defs><radialGradient id="b-bg2" cx="50%" cy="30%" r="65%"><stop offset="0%" stop-color="#0f1c15"/><stop offset="100%" stop-color="#0a0d0b"/></radialGradient><linearGradient id="b-fill2" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#2ed2b6" stop-opacity="0.22"/><stop offset="100%" stop-color="#14845a" stop-opacity="0.10"/></linearGradient><filter id="b-glow2" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <rect width="64" height="64" rx="13" fill="url(#b-bg2)"/>
+        <path d="M32,57 C42,44 47,28 32,9 C17,28 22,44 32,57 Z" fill="url(#b-fill2)"/>
+        <path d="M32,57 C42,44 47,28 32,9 C17,28 22,44 32,57 Z" fill="none" stroke="#2ed2b6" stroke-width="0.9" opacity="0.5"/>
+        <line x1="32" y1="57" x2="32" y2="9" stroke="#2ed2b6" stroke-width="1.1" opacity="0.6" stroke-linecap="round"/>
+        <line x1="32" y1="22" x2="38" y2="19" stroke="#2ed2b6" stroke-width="0.7" opacity="0.55"/>
+        <line x1="32" y1="22" x2="26" y2="19" stroke="#2ed2b6" stroke-width="0.7" opacity="0.55"/>
+        <line x1="32" y1="31" x2="40" y2="27" stroke="#2ed2b6" stroke-width="0.8" opacity="0.55"/>
+        <line x1="32" y1="31" x2="24" y2="27" stroke="#2ed2b6" stroke-width="0.8" opacity="0.55"/>
+        <line x1="32" y1="40" x2="41" y2="36" stroke="#2ed2b6" stroke-width="0.8" opacity="0.5"/>
+        <line x1="32" y1="40" x2="23" y2="36" stroke="#2ed2b6" stroke-width="0.8" opacity="0.5"/>
+        <line x1="32" y1="49" x2="39" y2="46" stroke="#2ed2b6" stroke-width="0.7" opacity="0.45"/>
+        <line x1="32" y1="49" x2="25" y2="46" stroke="#2ed2b6" stroke-width="0.7" opacity="0.45"/>
+        <g filter="url(#b-glow2)">
+          <circle cx="32" cy="9"  r="2.5" fill="#2ed2b6"/>
+          <circle cx="38" cy="19" r="1.6" fill="#2ed2b6"/>
+          <circle cx="26" cy="19" r="1.6" fill="#2ed2b6"/>
+          <circle cx="40" cy="27" r="1.8" fill="#2ed2b6"/>
+          <circle cx="24" cy="27" r="1.8" fill="#2ed2b6"/>
+          <circle cx="41" cy="36" r="1.8" fill="#2ed2b6"/>
+          <circle cx="23" cy="36" r="1.8" fill="#2ed2b6"/>
+        </g>
+        <line x1="32" y1="57" x2="32" y2="60" stroke="#14845a" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span class="sz">64 px</span>
+    </div>
+    <div class="cell">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+        <defs><radialGradient id="b-bg3" cx="50%" cy="30%" r="65%"><stop offset="0%" stop-color="#0f1c15"/><stop offset="100%" stop-color="#0a0d0b"/></radialGradient><linearGradient id="b-fill3" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#2ed2b6" stop-opacity="0.22"/><stop offset="100%" stop-color="#14845a" stop-opacity="0.10"/></linearGradient></defs>
+        <rect width="64" height="64" rx="13" fill="url(#b-bg3)"/>
+        <path d="M32,57 C42,44 47,28 32,9 C17,28 22,44 32,57 Z" fill="url(#b-fill3)"/>
+        <path d="M32,57 C42,44 47,28 32,9 C17,28 22,44 32,57 Z" fill="none" stroke="#2ed2b6" stroke-width="0.9" opacity="0.5"/>
+        <line x1="32" y1="57" x2="32" y2="9" stroke="#2ed2b6" stroke-width="1.1" opacity="0.6" stroke-linecap="round"/>
+        <line x1="32" y1="31" x2="40" y2="27" stroke="#2ed2b6" stroke-width="0.8" opacity="0.55"/>
+        <line x1="32" y1="31" x2="24" y2="27" stroke="#2ed2b6" stroke-width="0.8" opacity="0.55"/>
+        <line x1="32" y1="40" x2="41" y2="36" stroke="#2ed2b6" stroke-width="0.8" opacity="0.5"/>
+        <line x1="32" y1="40" x2="23" y2="36" stroke="#2ed2b6" stroke-width="0.8" opacity="0.5"/>
+        <circle cx="32" cy="9"  r="2.5" fill="#2ed2b6"/>
+      </svg>
+      <span class="sz">32 px</span>
+    </div>
+  </div>
+
+  <div class="wm">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+      <defs><radialGradient id="b-bg4" cx="50%" cy="30%" r="65%"><stop offset="0%" stop-color="#0f1c15"/><stop offset="100%" stop-color="#0a0d0b"/></radialGradient><linearGradient id="b-fill4" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#2ed2b6" stop-opacity="0.22"/><stop offset="100%" stop-color="#14845a" stop-opacity="0.10"/></linearGradient></defs>
+      <rect width="64" height="64" rx="13" fill="url(#b-bg4)"/>
+      <path d="M32,57 C42,44 47,28 32,9 C17,28 22,44 32,57 Z" fill="url(#b-fill4)"/>
+      <path d="M32,57 C42,44 47,28 32,9 C17,28 22,44 32,57 Z" fill="none" stroke="#2ed2b6" stroke-width="0.9" opacity="0.5"/>
+      <line x1="32" y1="57" x2="32" y2="9" stroke="#2ed2b6" stroke-width="1.1" opacity="0.6" stroke-linecap="round"/>
+      <line x1="32" y1="31" x2="40" y2="27" stroke="#2ed2b6" stroke-width="0.8" opacity="0.55"/>
+      <line x1="32" y1="31" x2="24" y2="27" stroke="#2ed2b6" stroke-width="0.8" opacity="0.55"/>
+      <line x1="32" y1="40" x2="41" y2="36" stroke="#2ed2b6" stroke-width="0.8" opacity="0.5"/>
+      <line x1="32" y1="40" x2="23" y2="36" stroke="#2ed2b6" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="32" cy="9" r="2.5" fill="#2ed2b6"/>
+    </svg>
+    <div class="sep"></div>
+    <div class="wm-t">Data<em>Walkthrough</em></div>
+  </div>
+  <div class="on-light">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+      <defs><radialGradient id="b-bg5" cx="50%" cy="30%" r="65%"><stop offset="0%" stop-color="#0f1c15"/><stop offset="100%" stop-color="#0a0d0b"/></radialGradient><linearGradient id="b-fill5" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#2ed2b6" stop-opacity="0.22"/><stop offset="100%" stop-color="#14845a" stop-opacity="0.10"/></linearGradient></defs>
+      <rect width="64" height="64" rx="13" fill="url(#b-bg5)"/>
+      <path d="M32,57 C42,44 47,28 32,9 C17,28 22,44 32,57 Z" fill="url(#b-fill5)"/>
+      <path d="M32,57 C42,44 47,28 32,9 C17,28 22,44 32,57 Z" fill="none" stroke="#2ed2b6" stroke-width="0.9" opacity="0.5"/>
+      <line x1="32" y1="57" x2="32" y2="9" stroke="#2ed2b6" stroke-width="1.1" opacity="0.6" stroke-linecap="round"/>
+      <line x1="32" y1="31" x2="40" y2="27" stroke="#2ed2b6" stroke-width="0.8" opacity="0.55"/>
+      <line x1="32" y1="31" x2="24" y2="27" stroke="#2ed2b6" stroke-width="0.8" opacity="0.55"/>
+      <line x1="32" y1="40" x2="41" y2="36" stroke="#2ed2b6" stroke-width="0.8" opacity="0.5"/>
+      <line x1="32" y1="40" x2="23" y2="36" stroke="#2ed2b6" stroke-width="0.8" opacity="0.5"/>
+      <circle cx="32" cy="9" r="2.5" fill="#2ed2b6"/>
+    </svg>
+    <div class="ol-sep"></div>
+    <div class="ol-t">Data<em>Walkthrough</em></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════
+     OPTION C  ·  THE MYCELIUM  ·  Radial root
+═══════════════════════════════════════════ -->
+<div class="col">
+  <div>
+    <div class="tag">Option C</div>
+    <div class="name">The Mycelium</div>
+    <div class="desc">Underground fungal network = neural network. A bright central node, tendrils branching in every direction. Unexpected.</div>
+  </div>
+
+  <div class="row">
+    <div class="cell">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="128" height="128">
+        <defs>
+          <radialGradient id="c-bg" cx="50%" cy="50%" r="55%">
+            <stop offset="0%" stop-color="#0e1a14"/>
+            <stop offset="100%" stop-color="#09090c"/>
+          </radialGradient>
+          <filter id="c-glow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="2.5" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="c-soft" x="-60%" y="-60%" width="220%" height="220%">
+            <feGaussianBlur stdDeviation="1.3" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <rect width="64" height="64" rx="13" fill="url(#c-bg)"/>
+
+        <!-- Primary tendril lines from center (32,32) -->
+        <!-- N  --> <path d="M32,32 Q30,22 32,10"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <!-- NE --> <path d="M32,32 Q40,26 48,16"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <!-- E  --> <path d="M32,32 Q42,30 54,32"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <!-- SE --> <path d="M32,32 Q40,40 48,50"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <!-- S  --> <path d="M32,32 Q34,42 32,54"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <!-- SW --> <path d="M32,32 Q24,40 16,50"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <!-- W  --> <path d="M32,32 Q22,34 10,32"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <!-- NW --> <path d="M32,32 Q24,26 16,16"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+
+        <!-- Secondary branching (off each primary) -->
+        <path d="M32,10 Q28,7  24,6"  stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M32,10 Q36,7  40,6"  stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M48,16 Q50,11 54,10" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M48,16 Q52,19 56,20" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M54,32 Q57,27 58,24" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M54,32 Q57,37 58,40" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M48,50 Q52,53 54,56" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M48,50 Q50,55 48,58" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M32,54 Q28,58 24,60" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M32,54 Q36,58 40,60" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M16,50 Q12,53 10,56" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M16,50 Q14,55 16,58" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M10,32 Q7,27  6,24"  stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M10,32 Q7,37  6,40"  stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M16,16 Q12,13 10,10" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M16,16 Q14,11 16,8"  stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+
+        <!-- Tip nodes -->
+        <g filter="url(#c-soft)">
+          <circle cx="32" cy="10" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="48" cy="16" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="54" cy="32" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="48" cy="50" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="32" cy="54" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="16" cy="50" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="10" cy="32" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="16" cy="16" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+        </g>
+
+        <!-- Central node (bright) -->
+        <g filter="url(#c-glow)">
+          <circle cx="32" cy="32" r="4.5" fill="#2ed2b6"/>
+        </g>
+        <circle cx="32" cy="32" r="2.2" fill="#e8fff9"/>
+      </svg>
+      <span class="sz">128 px</span>
+    </div>
+    <div class="cell">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+        <defs><radialGradient id="c-bg2" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#0e1a14"/><stop offset="100%" stop-color="#09090c"/></radialGradient><filter id="c-glow2" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><filter id="c-soft2" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="1.3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <rect width="64" height="64" rx="13" fill="url(#c-bg2)"/>
+        <path d="M32,32 Q30,22 32,10"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q40,26 48,16"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q42,30 54,32"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q40,40 48,50"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q34,42 32,54"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q24,40 16,50"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q22,34 10,32"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q24,26 16,16"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,10 Q28,7  24,6"  stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M32,10 Q36,7  40,6"  stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M48,16 Q50,11 54,10" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M54,32 Q57,27 58,24" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M48,50 Q52,53 54,56" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M32,54 Q28,58 24,60" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M10,32 Q7,27  6,24"  stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <path d="M16,16 Q12,13 10,10" stroke="#2ed2b6" stroke-width="0.6" fill="none" opacity="0.4"/>
+        <g filter="url(#c-soft2)">
+          <circle cx="32" cy="10" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="48" cy="16" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="54" cy="32" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="48" cy="50" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="32" cy="54" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="16" cy="50" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="10" cy="32" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+          <circle cx="16" cy="16" r="1.6" fill="#2ed2b6" opacity="0.8"/>
+        </g>
+        <g filter="url(#c-glow2)"><circle cx="32" cy="32" r="4.5" fill="#2ed2b6"/></g>
+        <circle cx="32" cy="32" r="2.2" fill="#e8fff9"/>
+      </svg>
+      <span class="sz">64 px</span>
+    </div>
+    <div class="cell">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+        <defs><radialGradient id="c-bg3" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#0e1a14"/><stop offset="100%" stop-color="#09090c"/></radialGradient><filter id="c-glow3" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+        <rect width="64" height="64" rx="13" fill="url(#c-bg3)"/>
+        <path d="M32,32 Q30,22 32,10"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q40,26 48,16"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q42,30 54,32"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q40,40 48,50"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q34,42 32,54"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q24,40 16,50"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q22,34 10,32"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <path d="M32,32 Q24,26 16,16"   stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+        <g filter="url(#c-glow3)"><circle cx="32" cy="32" r="4.5" fill="#2ed2b6"/></g>
+        <circle cx="32" cy="32" r="2.2" fill="#e8fff9"/>
+      </svg>
+      <span class="sz">32 px</span>
+    </div>
+  </div>
+
+  <div class="wm">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+      <defs><radialGradient id="c-bg4" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#0e1a14"/><stop offset="100%" stop-color="#09090c"/></radialGradient><filter id="c-glow4" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <rect width="64" height="64" rx="13" fill="url(#c-bg4)"/>
+      <path d="M32,32 Q30,22 32,10" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q40,26 48,16" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q42,30 54,32" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q40,40 48,50" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q34,42 32,54" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q24,40 16,50" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q22,34 10,32" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q24,26 16,16" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <g filter="url(#c-glow4)"><circle cx="32" cy="32" r="4.5" fill="#2ed2b6"/></g>
+      <circle cx="32" cy="32" r="2.2" fill="#e8fff9"/>
+    </svg>
+    <div class="sep"></div>
+    <div class="wm-t">Data<em>Walkthrough</em></div>
+  </div>
+  <div class="on-light">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="32" height="32">
+      <defs><radialGradient id="c-bg5" cx="50%" cy="50%" r="55%"><stop offset="0%" stop-color="#0e1a14"/><stop offset="100%" stop-color="#09090c"/></radialGradient><filter id="c-glow5" x="-100%" y="-100%" width="300%" height="300%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+      <rect width="64" height="64" rx="13" fill="url(#c-bg5)"/>
+      <path d="M32,32 Q30,22 32,10" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q40,26 48,16" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q42,30 54,32" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q40,40 48,50" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q34,42 32,54" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q24,40 16,50" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q22,34 10,32" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <path d="M32,32 Q24,26 16,16" stroke="#2ed2b6" stroke-width="0.85" fill="none" opacity="0.55"/>
+      <g filter="url(#c-glow5)"><circle cx="32" cy="32" r="4.5" fill="#2ed2b6"/></g>
+      <circle cx="32" cy="32" r="2.2" fill="#e8fff9"/>
+    </svg>
+    <div class="ol-sep"></div>
+    <div class="ol-t">Data<em>Walkthrough</em></div>
+  </div>
+</div>
+
+</div><!-- /grid -->
+</body>
+</html>
